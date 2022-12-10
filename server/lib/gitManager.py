@@ -84,6 +84,7 @@ class GitHubManager:
         try:
             extractReleaseTag = self.sendCommandToTerminalAndGetOutpout(
                 'git describe')
+            print('---------------------------------- ',extractReleaseTag)
             if 'False' in str(extractReleaseTag):
                 return 'v1.0.0'
             else:
@@ -106,7 +107,7 @@ class GitHubManager:
         """
         # work flow.
         getLatesTag = ''
-        print(self.getLatestTagReleaseFromGit())
+        
         if self.getLatestTagReleaseFromGit():
             getLatesTag = str(self.getLatestTagReleaseFromGit()
                               ).replace('\n', '').replace('\\n', '').replace("'", '')
