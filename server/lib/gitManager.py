@@ -87,7 +87,6 @@ class GitHubManager:
             if 'False' in str(extractReleaseTag):
                 return 'v1.0.0'
             else:
-                print(str(extractReleaseTag)[2::].split('-')[0])
                 return str(extractReleaseTag)[2::].split('-')[0]
 
         except subprocess.CalledProcessError:
@@ -107,6 +106,7 @@ class GitHubManager:
         """
         # work flow.
         getLatesTag = ''
+        print(self.getLatestTagReleaseFromGit())
         if self.getLatestTagReleaseFromGit():
             getLatesTag = str(self.getLatestTagReleaseFromGit()
                               ).replace('\n', '').replace('\\n', '').replace("'", '')
