@@ -209,7 +209,7 @@ if __name__ == '__main__':
                 if str(args.new_tag) == str('3'):
                     print( 'Init activated PATCH release.')
                 GitHubManager().createAutoTagToGit(setenceToReleaseTypeStr=_sentence,
-                                                   updateRevistionTypeStr=args.new_tag)
+                                                   updateRevistionTypeStr=args.new_tag,)
         except TypeError:
             print( 'Sentece was not giving , please insert a sentence.')
     # git folder not exists in the folder
