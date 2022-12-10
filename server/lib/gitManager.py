@@ -175,13 +175,12 @@ class GitHubManager:
                 tagVersion = f'v{firstIndex}.{secondIndex}.{thirdIndex}'
             else:
                 tagVersion = 'v1.0.0'
-            print(tagVersion)
-            # # Create auto tag to git
-            # subprocess.call(
-            #     ["git", "tag", "-a", "-m", f"{setenceToReleaseTypeStr}", f"{tagVersion}"])
-            # subprocess.call(["git", "push", "origin", f"--tags"])
-            # self.pushBasicToGithub(
-            #     f'Release from tag method --> {setenceToReleaseTypeStr}')
+            # Create auto tag to git
+            subprocess.call(
+                ["git", "tag", "-a", "-m", f"{setenceToReleaseTypeStr}", f"{tagVersion}"])
+            subprocess.call(["git", "push", "origin", f"--tags"])
+            self.pushBasicToGithub(
+                f'Release from tag method --> {setenceToReleaseTypeStr}')
 
 
 # Running only if system in this file
