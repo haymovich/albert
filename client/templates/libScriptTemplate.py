@@ -9,47 +9,25 @@ import argparse
 import subprocess
 import os
 import datetime
-from _logger import logger
-from _readJson import ReadJson
-from testingScript import TestingScript
+from logger import logger
 import sys
-from _switz import Switz
-# ------- # Outside Variable  - con searcher # ------- #
+# ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-st' # scriptTemplate will be -st
 # ------- # Outside Variable - visual && usefull variable # ------- #
-pathToSaveFile = Switz().extractItemFromSysArgv(
-    sysArgvToSearchingTypeList=sys.argv,
-    indexToFindTypeStr='-save_log',
-    firstNumberAddToIndexTypeInt=1,
-    secondNumberAddToIndexTypeInt=2,
-    defualtResultsToReturnTypeAny=False,
-)
-scriptRandomNumber = Switz().randomNumber()
-getCurrnetHostname = Switz().getHostname()
+# scriptRandomNumber = Switz().randomNumber()
+# getCurrnetHostname = Switz().getHostname()
 # class ArgumentParserError(Exception): pass
 # class ThrowingArgumentParser(argparse.ArgumentParser):
 #     def error(self, message):
 #         raise ArgumentParserError(message)
-readJsonDataFromMappingFile = ReadJson().readPathLocationFromMap()
 startTime = datetime.datetime.now()
 dashLine = '-------------------------------------------'
 currentSite = 'site_0'
 
-try:
-    if pathToSaveFile:
-            _saveLoggerTypeBool = True
-    else:
-        _saveLoggerTypeBool = False
-    _logger = logger(
-        saveLoggerTypeBool=_saveLoggerTypeBool,
-        homePathBaseTypeStr=readJsonDataFromMappingFile[currentSite]['systemPath']['homePath'],
-        superUserTypeStr=readJsonDataFromMappingFile[currentSite]['systemPath']['superUser'],
-        pathToSaveLog=pathToSaveFile
-        )
-except (FileNotFoundError,TypeError,KeyError):
-    _logger = logger(saveLoggerTypeBool=_saveLoggerTypeBool,homePathBaseTypeStr='EMPTY',superUserTypeStr='EMPTY',pathToSaveLog=pathToSaveFile)
+log = logger(enableSave=False)
+
 # ------- # Try - Import paramiko # ------- #
-Switz().checkLib()
+# Switz().checkLib()
 # ------- # Outside Dynamic Variable - scipt args # ------- #
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
@@ -78,7 +56,7 @@ class tamplateClass():
         # ------- # Default attributes -> Path # ------- #
 
     # ------- # Methods -> method # ------- #
-    def method(self):
+    def deploy(self):
         pass
 
 if __name__ == "__main__":
@@ -90,13 +68,4 @@ if __name__ == "__main__":
     # ------- # Arguments -> -e2 -> example 2 # ------- #
     elif args.example_2:
         pass
-    # ------- # Arguments -> -t -> testing # ------- #
-    elif args.testing:
-        # init basic var
-        _commandsToTest = [
-            'COMMAND_1',
-            'COMMAND_2'
-        ]
-        _scriptName = scriptName
-        TestingScript().runCommandTest(testingCommandsTypeList=_commandsToTest,scriptNameToTestOnTypeStr=_scriptName)
 
