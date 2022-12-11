@@ -93,7 +93,7 @@ class logger:
         # ------- # Default attributes -> Names # ------- #
 
         # ------- # Default attributes -> Logger Variable # ------- #
-        self.loggerWrapperFormat = '%(asctime)s %(levelname)-10s | %(message)s'
+        self.loggerWrapperFormat = '%(asctime)s %(levelname)-3s | %(message)s'
         if enableSave:
             logging.basicConfig(
                 level=logging.INFO,
