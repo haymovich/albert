@@ -17,18 +17,18 @@ scriptNickname = '-setup'
 log = logger(False)
 
 if __name__ == "__main__":
-    # Utils().spliter()
-    # Utils().installLib()
-    # Utils().checkLib()
-    # Utils().spliter()
-    # AliasManager().injectAlbertAlias()
-    # Utils().spliter()
     _commamds = [
         f'sudo chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}',
         f'sudo cp -r {Reader().extractorFilePathFromAlbertConfigFiles("config/albert_tmp.json")} {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"albert.json")}'
     ]
     for i in _commamds:
         os.system(i)
+    Utils().spliter()
+    Utils().installLib()
+    Utils().checkLib()
+    Utils().spliter()
+    AliasManager().injectAlbertAlias()
+    Utils().spliter()
 
     log.printLog(1,'Finish install all albert req files / alias / etc - it\'s recomended to do bash after.')
     
