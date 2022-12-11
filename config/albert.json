@@ -25,25 +25,29 @@
   ]
  },
  "crawler": {
-  "-git": {
-   "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
-   "lastUpdateTime": "2022-12-11 12:03:17.330466"
-  },
   "-lg": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
-   "lastUpdateTime": "2022-12-11 12:03:17.334465"
+   "lastUpdateTime": "2022-12-11 18:56:26.334125"
   },
   "-wj": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
-   "lastUpdateTime": "2022-12-11 12:03:17.345054"
+   "lastUpdateTime": "2022-12-11 18:56:26.343451"
   },
   "-alb": {
    "path": "/Users/barhaymovich/tools/dev/albert/albery.py",
-   "lastUpdateTime": "2022-12-11 12:03:17.313475"
+   "lastUpdateTime": "2022-12-11 18:56:26.314166"
   },
   "-alias": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2022-12-11 12:03:17.317729"
+   "lastUpdateTime": "2022-12-11 18:56:26.318437"
+  },
+  "-reader": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/reader.py",
+   "lastUpdateTime": "2022-12-11 18:56:26.336046"
+  },
+  "-git": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
+   "lastUpdateTime": "2022-12-11 18:56:26.329961"
   }
  },
  "spreadPaths": {}

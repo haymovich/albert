@@ -12,8 +12,6 @@ Author@Bar Levi Haymovich
 scriptNickname = '-git'
 # ------- # Outside Variable - visual && usefull variable # ------- #
 # ------- # Outside function - configParser # ------- #
-
-
 def configParser():
     """
     """
@@ -188,7 +186,7 @@ if __name__ == '__main__':
     args = configParser().parse_args()
     # check if git inside the current folder
     _folderToSearchTheGitFolder = args.go_to_folder
-    if _folderToSearchTheGitFolder == 'albert_src':
+    if [i for i in ['albert_src','alb_src'] if i == _folderToSearchTheGitFolder]:
         _folderToSearchTheGitFolder = Reader().extractorFilePathFromAlbertConfigFiles('albert')
     os.chdir(_folderToSearchTheGitFolder)
     print(

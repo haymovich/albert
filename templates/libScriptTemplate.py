@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 @Auther Name - Bar levi haymovch
-@Auther Email - bar.rose65@gmail.com
 
 <SCRIPT EXAPLAIN>
 """
@@ -21,7 +20,6 @@ scriptNickname = '-st' # scriptTemplate will be -st
 #     def error(self, message):
 #         raise ArgumentParserError(message)
 startTime = datetime.datetime.now()
-dashLine = '-------------------------------------------'
 log = logger(enableSave=False)
 
 # ------- # Try - Import paramiko # ------- #

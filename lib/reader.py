@@ -10,7 +10,8 @@ import subprocess
 import os
 import datetime
 import sys
-
+# ------- # Outside Variable  - albert searcher # ------- #
+scriptNickname = '-reader'
 # ------- # Outside Variable - visual && usefull variable # ------- #
 startTime = datetime.datetime.now()
 dashLine = '-------------------------------------------'
@@ -126,8 +127,8 @@ if __name__ == "__main__":
     if args.show:
         # print("Reader().extractorFilePathFromAlbertConfigFiles('config/albert.json')")
         # print(Reader().extractorFilePathFromAlbertConfigFiles('config/albert.json'))
-        print(Reader().extractorFilePathFromAlbertConfigFiles('log'))
-        print(dashLine)
-        print("Reader().showAllKeysInConfigFilesMapper()")
+        # print(Reader().extractorFilePathFromAlbertConfigFiles('log'))
+        # print(dashLine)
+        # print("Reader().showAllKeysInConfigFilesMapper()")
         print(Reader().showAllKeysInConfigFilesMapper())
         # pass

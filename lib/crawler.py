@@ -5,7 +5,7 @@
 
 <SCRIPT EXAPLAIN>
 """
-# TODO 
+# TODO
 """
 add clean up
 check for any err
@@ -19,8 +19,10 @@ import sys
 from logger import logger
 from reader import Reader
 from writer import Writer
+
+
 # ------- # Outside Variable  - albert searcher # ------- #
-scriptNickname = '-crw'
+scriptNickname = '-crw2'
 # ------- # Outside Variable - visual && usefull variable # ------- #
 dashLine = '-------------------------------------------'
 log = logger(enableSave=False)
@@ -29,6 +31,8 @@ scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 pathScript = os.path.join(pathScriptFolder, scriptName)
 # ------- # Outside function - configParser # ------- #
+
+
 def configParser():
     parser = argparse.ArgumentParser()
     parser.add_argument("-e1", "--example_1", help="this is example args number 1",
@@ -46,12 +50,15 @@ class ThrowingArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         raise ValueError(message)
 # ------- # Class -> tamplateClass # ------- #
+
+
 class Crawler():
     """
     - Exaplain :
         - Search inside all script in con folder for possible arugments
 
     """
+
     def __init__(self):
         pass
         # ------- # Default attributes -> basic Variable # ------- #
@@ -68,9 +75,82 @@ class Crawler():
         return _locationFilesTypeDict
 
     # ------- # Methods -> searchScriptNickname # ------- #
+    def checkForDuppInNicknames(self):
+        """
+        map all config file and check if any dupp in the path for any crawelers
+        1. check for dup
+        2. check if path exists
+        3. grab all dupp values and the with the latest date , save it - all others - del
+        4. save the new config json
+        """
+        # init basic vars
+        _readMapJsonFile = Reader().readAlbertConfigFiles()
+        _mapper = {}
+        _res = []
+        _resAsDict = {}
+        _finalRes = {}
+        _removeItems = set()
+        # create parser for dup and file exists
+        for nickname, dictItems in _readMapJsonFile['crawler'].items():
+            # print({dictItems['path']:nickname})
+            if os.path.exists(dictItems['path']):
+                if dictItems['path'] not in _mapper.keys():
+                    _mapper[dictItems['path']] = {dictItems["lastUpdateTime"]: {
+                        "nickname": nickname, 'path': dictItems['path'], "lastUpdateTime": dictItems["lastUpdateTime"]}}
+                else:
+                    if _mapper[dictItems['path']] not in _res:
+                        _res.append(_mapper[dictItems['path']])
+                    _res.append({dictItems["lastUpdateTime"]: {
+                                "nickname": nickname, 'path': dictItems['path'], "lastUpdateTime": dictItems["lastUpdateTime"]}})
+        # commbine all dict into 1 and remove the nickname that going to stay
+        for d in _res:
+            _resAsDict.update(d)
+            _removeItems.add(list(d.values())[0]['nickname'])
+        # if _resAsDict match
+        if _resAsDict:
+            _dates = sorted([i for i in _resAsDict], reverse=True)[0]
+            _finalRes = _resAsDict[_dates]
+            _finalRes = {
+                _finalRes['nickname']: {
+                    'path': _finalRes['path'],
+                    'lastUpdateTime': _finalRes['lastUpdateTime']
+                }
+            }
+            _nickname = list(_finalRes.keys())[0]
+            # remove the nickname that going to stay
+            _removeItems.remove(_nickname)
+            for _ in _removeItems:
+                # pop the ones that not going to stay.
+                _readMapJsonFile['crawler'].pop(_)
+
+            # update the config
+            _readMapJsonFile['crawler'][_nickname] = _finalRes[_nickname]
+            # write into new file
+            Writer().writeAnyJsonFile(Reader().extractorFilePathFromAlbertConfigFiles(
+                'config/albert.json'), _readMapJsonFile)
+
+    # ------- # Methods -> searchScriptNickname # ------- #
+
     def searchScriptNickname(self, searchNickName: str):
+        """verify that the json config file is up to date and the nickname is exists"""
+        _extractPath = self.searchScriptNicknameExtractor(searchNickName)
+        _readMapJsonFile = Reader().readAlbertConfigFiles()
+        if not os.path.exists(_extractPath):
+            log.printLog(
+                2, f'Seems like the Path [{_extractPath}] for script nickname [{searchNickName}] has change - deploy auto rescan.')
+            _readMapJsonFile['crawler'].pop(searchNickName)
+            Writer().writeAnyJsonFile(Reader().extractorFilePathFromAlbertConfigFiles(
+                'config/albert.json'), _readMapJsonFile)
+            _extractPath = self.searchScriptNicknameExtractor(searchNickName)
+            if not os.path.exists(_extractPath):
+                sys.exit(0)
+        self.checkForDuppInNicknames()
+        return _extractPath
+
+    # ------- # Methods -> searchScriptNickname # ------- #
+    def searchScriptNicknameExtractor(self, searchNickName: str):
         # init basic var
-        _readMapJsonFile = Reader().jsonReader(Reader().pathAlbertConfigFiles)
+        _readMapJsonFile = Reader().readAlbertConfigFiles()
         _scriptLocationTypeDict = self.mapAllScriptsInsideTheBaseFolder()
         _itemToSearch = 'scriptNickname = '
         _itemToIgnore = "scriptNickname = '-st' # scriptTemplate will be -st"

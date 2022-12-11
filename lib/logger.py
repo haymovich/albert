@@ -58,7 +58,7 @@ class logger:
 
     def __init__(
         self,
-        enableSave: bool = True
+        enableSave: bool = False
     ):
         # ------- # Default attributes -> color Variable # ------- #
         self.colorMap = {
