@@ -181,7 +181,7 @@ class logger:
 
             # check for color
             if colorToPickTypeInt in list(range(1, 6)):
-                colorToPick = colorToPickTypeInt
+                colorToPick = self.optionsLogger[colorToPickTypeInt]['color']
 
         # formatter = coloredlogs.ColoredFormatter(self.loggerWrapperFormat)
         # logging.setFormatter(formatter)
