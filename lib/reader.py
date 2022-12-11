@@ -3,6 +3,7 @@
 @Auther Name - Bar levi haymovch
 
 <SCRIPT EXAPLAIN>
+alb -reader -show   
 """
 import json
 import argparse
@@ -99,8 +100,9 @@ class Reader():
     
     # ------- # Methods -> showAllKeysInConfigFilesMapper # ------- #
     def showAllKeysInConfigFilesMapper(self):
-        for k, v in self.pathProjectParser.items():
-            print(f'{k} ----> {v}')
+        for k,v in self.pathProjectParser.items():        
+            _findSpace = 45 - len(f'Arguemnt [{k}]')
+            print(f'[{k}] {" "*_findSpace} is eq to [{v}]')
             
     # ------- # Methods -> readAnyTxtFile # ------- #
     def readAnyTxtFile(self,fileTxtLocationToRead:str):
@@ -112,6 +114,11 @@ class Reader():
             # print('error')
     # ------- # Methods -> filePathExtractorFromAlbertConfigFiles # ------- #
     def extractorFilePathFromAlbertConfigFiles(self, keyToExtract: str):
+        """
+        Give key and extract the path for this key - for example :\n
+        _path = Reader().extractorFilePathFromAlbertConfigFiles('ablert/albert.py')
+
+        """
         _res = False
         if keyToExtract in self.pathProjectParser.keys():
             _res = self.pathProjectParser[keyToExtract]
@@ -130,5 +137,5 @@ if __name__ == "__main__":
         # print(Reader().extractorFilePathFromAlbertConfigFiles('log'))
         # print(dashLine)
         # print("Reader().showAllKeysInConfigFilesMapper()")
-        print(Reader().showAllKeysInConfigFilesMapper())
+        Reader().showAllKeysInConfigFilesMapper()
         # pass

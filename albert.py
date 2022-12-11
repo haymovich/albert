@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import datetime
 import os
-import sys
 import argparse
+import sys
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(1, os.path.join(pathScriptFolder, 'lib'))
 from logger import logger

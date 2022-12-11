@@ -8,6 +8,9 @@ from reader import Reader
 from logger import logger
 """
 Author@Bar Levi Haymovich
+alb -git -gtf alb_src -nt 3 -s "simple git push detailes"
+
+
 """
 # ------- # Outside Variable  - con searcher # ------- #
 scriptNickname = '-git'

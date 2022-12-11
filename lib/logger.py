@@ -189,7 +189,7 @@ class logger:
 
         logging.addLevelName(logging.INFO, status)
         self.logginWrapper.info(
-            f'{boldText}{colorToPick}{msgTypeStr}{self.endOfLine}')
+            f'{self.makeBold}{colorToPick}{msgTypeStr}{self.endOfLine}')
         # return
 
         return f'{currentTime} {separator}{status} {msgTypeStr}'
@@ -227,23 +227,10 @@ class logger:
         colorToPick = ''
         # check for color
         # blue
-        if colorToPickTypeInt == 1:
-            colorToPick = self.blueColor
-        # red
-        if colorToPickTypeInt == 2:
-            colorToPick = self.failColor
-        # yellow
-        if colorToPickTypeInt == 3:
-            colorToPick = self.yellowColor
-        # turquoise
-        if colorToPickTypeInt == 4:
-            colorToPick = self.turquoiseColor
-        # green
-        if colorToPickTypeInt == 5:
-            colorToPick = self.greenColor
-        # change the variable
-        self.outputFileContantTypeList.append(showResults)
-        # outputFileContantTypeList.append(showResults)
+        if colorToPickTypeInt in list(range(0, 6)):
+            colorToPick = self.optionsLogger[colorToPickTypeInt]['color']
+
+
         showResults = f'{self.makeBold}{colorToPick}{showResults}{self.endOfLine}'
         # print the output
         # self.checkSavingLoggerStatus()

@@ -27,11 +27,13 @@ def configParser():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-name", "--alias_name",
-                        help="attach the name to the alias name - how the alias will call", type=str, default=True)
+                        help="attach the name to the alias name - how the alias will call", type=str, default=False)
     parser.add_argument("-value", "--alias_value",
                         help="what happend after the alias will called ?", nargs='+', default=False)
     parser.add_argument("-inject", "--inject",
                         help="inject the new alias to the bash", action='store_true', default=False)
+    parser.add_argument("-inject_albert", "--inject_albert",
+                        help="inject albert into system", action='store_true', default=False)
     return parser
 
 
@@ -138,8 +140,8 @@ if __name__ == "__main__":
     # alb -alias -name calb -value cd /Users/barhaymovich/tools/dev/albert
 
     args = configParser().parse_args()
-    argsWrapper = [args.alias_name, " ".join(args.alias_value)]
-#     # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
+    argsWrapper = [args.alias_name, " ".join(args.alias_value) if args.alias_value else False]
+    # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
     if argsWrapper[0] and argsWrapper[1]:
         _aliasBuilder = AliasManager().aliasSyntaxBuilder(
             argsWrapper[0], argsWrapper[1])
@@ -150,3 +152,11 @@ if __name__ == "__main__":
         else:
             print(AliasManager().aliasSyntaxBuilder(
                 argsWrapper[0], argsWrapper[1]))
+    # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
+    elif args.inject_albert:
+        _mapper = {
+            'alb':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+            'albert':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+        }
+        for aliasName,aliasVal in _mapper.items():
+            AliasManager().injectNewAlias(aliasName,aliasVal)
