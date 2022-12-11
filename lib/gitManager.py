@@ -194,7 +194,7 @@ if __name__ == '__main__':
     log.printLog(0,
         f'Try to search .git folder inside --> {_folderToSearchTheGitFolder}')
     if '.git' in os.listdir(_folderToSearchTheGitFolder):
-        log.printLog(0,f'.git folder match --> {_folderToSearchTheGitFolder}')
+        log.printLog(1,f'.git folder match --> {_folderToSearchTheGitFolder}')
         # init basic var
         # ------- # Arguments -> -s-> sentence # ------- #
         try:
@@ -206,11 +206,11 @@ if __name__ == '__main__':
             # ------- # Arguments -> -nt -> new_tag # ------- #
             elif args.new_tag:
                 if str(args.new_tag) == str('1'):
-                    log.printLog(0,'Init activated MAJOR release.')
+                    log.printLog(7,'Init activated MAJOR release.','MAJOR-UPDATE',4)
                 if str(args.new_tag) == str('2'):
-                    log.printLog(0,'Init activated MINOR release.')
+                    log.printLog(7,'Init activated MINOR release.','MAJOR-UPDATE',4)
                 if str(args.new_tag) == str('3'):
-                    log.printLog(0,'Init activated PATCH release.')
+                    log.printLog(7,'Init activated PATCH release.','MAJOR-UPDATE',4)
                 GitHubManager().createAutoTagToGit(setenceToReleaseTypeStr=_sentence,
                                                    updateRevistionTypeStr=args.new_tag,)
         except TypeError:
