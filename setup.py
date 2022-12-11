@@ -22,7 +22,7 @@ if __name__ == "__main__":
         f'sudo chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}',
     ]
     for i in _commamds:
-        print(i)
+        os.system(i)
     
     Utils().spliter()
     Utils().installLib()
