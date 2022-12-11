@@ -21,12 +21,13 @@ scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 pathScript = os.path.join(pathScriptFolder, scriptName)
 # ------- # Outside function - projectMapper # ------- #
-def projectMapper():
+def projectMapper(returnOnlyFilePath:bool=False):
     """loop over all project folder and automatic return all files / folder exists."""
     pathAlbertHomeDir = os.path.dirname(pathScriptFolder)
     blackListDirsForMapper = [
-        '.git', '__pycache__', '.cpython-', '.log']
+        '.git', '__pycache__', '.cpython-', '.log','.md','__init__.py']
     pathProjectParser = {}
+    pathProjectParserOnlyFiles = []
     for dirs, _, files in os.walk(pathAlbertHomeDir, topdown=True):
         _dirBaseName = os.path.basename(dirs)
         if not [i for i in blackListDirsForMapper if i in dirs]:
@@ -38,9 +39,14 @@ def projectMapper():
                         dirName = os.path.dirname(
                             _filePath).rsplit("/")[::-1][0]
                         pathProjectParser[f'{dirName}/{file}'] = _filePath
+                        if '.' in  _filePath:
+                            pathProjectParserOnlyFiles.append(_filePath)
             # folders
             if _dirBaseName not in pathProjectParser.keys():
                 pathProjectParser[_dirBaseName] = dirs+'/'
+    if returnOnlyFilePath:
+        return pathProjectParserOnlyFiles
+    
     return pathProjectParser
 # ------- # Outside function - configParser # ------- #
 
@@ -60,7 +66,6 @@ class Reader():
     - Exaplain :
         - Example this tamplate class
     """
-
     def __init__(self):
 
         # ------- # Default attributes -> basic Variable # ------- #
@@ -68,7 +73,7 @@ class Reader():
         # ------- # Default attributes -> Path # ------- #
         self.pathAlbertHomeDir = os.path.dirname(pathScriptFolder)
         self.blackListDirsForMapper = [
-            '.git', '__pycache__', '.cpython-', '.log']
+            '.git', '__pycache__', '.cpython-', '.log','__init__.py']
         self.pathProjectParser = projectMapper()
         self.pathAlbertConfigFiles = self.pathProjectParser['config/albert.json']
 
@@ -76,13 +81,25 @@ class Reader():
     def jsonReader(self, pathForFile: str):
         """Read any json file"""
         return Utils().jsonLoader(pathForFile=pathForFile)
+    
+    # ------- # Methods -> returnAllAlbertConfigFiles # ------- #
+    def returnAllAlbertConfigFiles(self):
+        return projectMapper(returnOnlyFilePath=True)
+    
     # ------- # Methods -> showAllKeysInConfigFilesMapper # ------- #
-
     def showAllKeysInConfigFilesMapper(self):
         for k, v in self.pathProjectParser.items():
             print(f'{k} ----> {v}')
+            
+    # ------- # Methods -> readAnyTxtFile # ------- #
+    def readAnyTxtFile(self,fileTxtLocationToRead:str):
+        try:
+            with open(fileTxtLocationToRead,'r') as readAnyTxtFile:
+                return readAnyTxtFile.read().splitlines()
+        except:
+            pass
+            # print('error')
     # ------- # Methods -> filePathExtractorFromAlbertConfigFiles # ------- #
-
     def extractorFilePathFromAlbertConfigFiles(self, keyToExtract: str):
         _res = False
         if keyToExtract in self.pathProjectParser.keys():
@@ -102,5 +119,5 @@ if __name__ == "__main__":
         print(Reader().extractorFilePathFromAlbertConfigFiles('log'))
         print(dashLine)
         print("Reader().showAllKeysInConfigFilesMapper()")
-        # print(Reader().showAllKeysInConfigFilesMapper())
+        print(Reader().showAllKeysInConfigFilesMapper())
         # pass

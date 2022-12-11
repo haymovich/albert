@@ -22,8 +22,6 @@ scriptNickname = '-st' # scriptTemplate will be -st
 #         raise ArgumentParserError(message)
 startTime = datetime.datetime.now()
 dashLine = '-------------------------------------------'
-currentSite = 'site_0'
-
 log = logger(enableSave=False)
 
 # ------- # Try - Import paramiko # ------- #

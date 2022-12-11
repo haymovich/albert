@@ -109,7 +109,7 @@ class logger:
             logging.basicConfig(
                 level=logging.INFO,
                 format=self.loggerWrapperFormat,
-                datefmt='%d-%m-%Y %H-%M-%S-%f'
+                datefmt='%d-%m-%Y %H-%M-%S'
             )
         self.logginWrapper = logging.getLogger()
         # ------- # Default attributes -> Path # ------- #

@@ -1,28 +1,42 @@
 {
-  "remote_creds": {
-    "creds_1": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-    },
-    "creds_2": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-    },
-    "creds_3": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-    }
+ "remote_creds": {
+  "creds_1": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
   },
-  "standAlongSearchDns": {
-    "ips": ["192.168.1"]
+  "creds_2": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
   },
-  "crawler": {},
-  "spreadPaths": {}
+  "creds_3": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
+  }
+ },
+ "standAlongSearchDns": {
+  "ips": [
+   "192.168.1"
+  ]
+ },
+ "crawler": {
+  "-git": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
+   "lastUpdateTime": "2022-12-11 02:13:21.735970"
+  },
+  "-lg": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
+   "lastUpdateTime": "2022-12-11 01:55:41.940172"
+  },
+  "-wj": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
+   "lastUpdateTime": "2022-12-11 02:13:21.746776"
+  }
+ },
+ "spreadPaths": {}
 }
-

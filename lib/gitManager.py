@@ -4,6 +4,7 @@ import os
 import datetime
 import subprocess
 import argparse
+from reader import Reader
 """
 Author@Bar Levi Haymovich
 """
@@ -187,6 +188,8 @@ if __name__ == '__main__':
     args = configParser().parse_args()
     # check if git inside the current folder
     _folderToSearchTheGitFolder = args.go_to_folder
+    if _folderToSearchTheGitFolder == 'albert_src':
+        _folderToSearchTheGitFolder = Reader().extractorFilePathFromAlbertConfigFiles('albert')
     os.chdir(_folderToSearchTheGitFolder)
     print(
         f'Try to search .git folder inside --> {_folderToSearchTheGitFolder}')
