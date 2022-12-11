@@ -118,7 +118,7 @@ class GitHubManager:
         # ragult push to git
         subprocess.call(["git", "add", "."])
         subprocess.call(
-            ["git", "commit", "-m", f"Last Release Tag -> [{getLatesTag}] | {msgToCommitTypeStr}"])
+            ["git", "commit", "-m", f"LRT : [{getLatesTag}] | {msgToCommitTypeStr}"])
         subprocess.call(["git", "push"])
 
      # ------- # Methods -> createAutoTagToGit # ------- #
