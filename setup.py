@@ -24,6 +24,6 @@ if __name__ == "__main__":
     AliasManager().injectAlbertAlias()
     Utils().spliter()
     
-    os.system('sudo chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}')
+    os.system(f'sudo chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}')
     log.printLog(1,'Finish install all albert req files / alias / etc - it\'s recomended to do bash after.')
     

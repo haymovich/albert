@@ -174,7 +174,7 @@ class Utils():
     def extractAllUsernamesInCurrentMachine(self):
         blackList = ['daemon', 'root', 'nobody']
         mapCommads = {
-            1: "etent passwd | grep /bin/bash | cut -d: -f1",  # linux
+            1: "etent passwd | grep bin/bash | cut -d: -f1",  # linux
             2: "dscl . list /Users | grep -v _",  # mac
             3: False,
             4: False
