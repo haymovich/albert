@@ -180,7 +180,7 @@ class GitHubManager:
                 ["git", "tag", "-a", "-m", f"{setenceToReleaseTypeStr}", f"{tagVersion}"])
             subprocess.call(["git", "push", "origin", f"--tags"])
             self.pushBasicToGithub(
-                f'Release from tag method --> {setenceToReleaseTypeStr}')
+                f'{setenceToReleaseTypeStr}')
 
 
 # Running only if system in this file
