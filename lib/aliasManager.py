@@ -27,7 +27,6 @@ scriptName = os.path.basename(__file__)
 # ------- # global function -> returnBashProfileFiles # ------- #
 def returnBashProfileFiles(item):
     """Use the creds username for extract which """
-
     results = []
     if item == '.bash_profile':
         pass
@@ -35,50 +34,22 @@ def returnBashProfileFiles(item):
         _extractUsers = Utils().extractAllUsernamesInCurrentMachine()
         if _extractUsers:
             results = [os.path.join(f'/home/{i}', str(item)) for i in _extractUsers]
-
-
-
         return results
-print(returnBashProfileFiles('123'))
-exit(0)
 # ------- # global function -> checkOsSystem # ------- #
-def extractTheRightSyntaxForAdamAutoAlias(aliasNameTypeStr: str, aliasValueTypeStr: str):
+def aliasSyntaxBuilder(aliasNameTypeStr: str, aliasValueTypeStr: str):
     """
-    - Explain :
-        - Check if the alias value is folder or file:
-            - If folder --> add auto c_ before the alias name
-            - Else -->
-                - add auto f_ before the alias name
+    check if alias name and value is giving && return builder
     """
     # init basic var
-    _aliasName = str(aliasNameTypeStr)
-    _aliasValue = str(aliasValueTypeStr)
-    _fullAliasName2ndValue = ''
-    _aliasHolderTypeList = []
-    # check if the alias value is folder
-    if os.path.isdir(_aliasValue):
-        # ADD C_ BEFORE
-        _rawAliasName = _aliasName.replace(".","").strip()
-        _aliasName = str(f'c{_rawAliasName}')
-        _aliasValue = f'cd {_aliasValue}'
-        _fullAliasName2ndValue = f"alias {_aliasName}='{_aliasValue}'"
-        _aliasHolderTypeList.append(_fullAliasName2ndValue.strip())
-    # check if the alias value is file
-    else:
-        _rawAliasName = _aliasName.replace(".","").strip()
-        _aliasName = str(f'{_rawAliasName}')
-        # check if alias is finish with .py
-        if '.pyc' not in _aliasValue and '.py' in _aliasValue:
-            _aliasValue = f'python3 {_aliasValue}'
-            # ragulaer
-            _fullAliasName2ndValue = f"alias {_aliasName}='{_aliasValue}'"
-            _aliasHolderTypeList.append(_fullAliasName2ndValue.strip())
-            # sudo
-            _fullAliasName2ndValue = f"alias sudo_{_aliasName}='sudo {_aliasValue}'"
-            _aliasHolderTypeList.append(_fullAliasName2ndValue.strip())  
-    # return
-    return _aliasHolderTypeList
+    _aliasName = str(aliasNameTypeStr).strip()
+    _aliasValue = str(aliasValueTypeStr).strip()
+    _aliasBuilder = False
+    if len(_aliasName) > 1 and len(_aliasValue) > 1:
+        _aliasBuilder = f"alias {_aliasName}='{_aliasValue}'"
+    return _aliasBuilder
 
+print(aliasSyntaxBuilder('t','t2'))
+exit(0)
 
 # read and modify bash profile file
 def readAndModifyBashProfileFile(
