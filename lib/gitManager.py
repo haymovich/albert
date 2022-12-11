@@ -5,12 +5,14 @@ import datetime
 import subprocess
 import argparse
 from reader import Reader
+from logger import logger
 """
 Author@Bar Levi Haymovich
 """
 # ------- # Outside Variable  - con searcher # ------- #
 scriptNickname = '-git'
 # ------- # Outside Variable - visual && usefull variable # ------- #
+log = logger(False)
 # ------- # Outside function - configParser # ------- #
 def configParser():
     """
