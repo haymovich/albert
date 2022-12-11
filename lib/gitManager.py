@@ -91,7 +91,7 @@ class GitHubManager:
                 return str(extractReleaseTag)[2::].split('-')[0]
 
         except subprocess.CalledProcessError:
-            print('Auto tag has been enable , tag 1.0.0 is create now for project.')
+            log.printLog(0,'Auto tag has been enable , tag 1.0.0 is create now for project.')
             return False
 
      # ------- # Methods -> pushBasicToGithub # ------- #
@@ -191,10 +191,10 @@ if __name__ == '__main__':
     if [i for i in ['albert_src','alb_src'] if i == _folderToSearchTheGitFolder]:
         _folderToSearchTheGitFolder = Reader().extractorFilePathFromAlbertConfigFiles('albert')
     os.chdir(_folderToSearchTheGitFolder)
-    print(
+    log.printLog(0,
         f'Try to search .git folder inside --> {_folderToSearchTheGitFolder}')
     if '.git' in os.listdir(_folderToSearchTheGitFolder):
-        print(f'.git folder match --> {_folderToSearchTheGitFolder}')
+        log.printLog(0,f'.git folder match --> {_folderToSearchTheGitFolder}')
         # init basic var
         # ------- # Arguments -> -s-> sentence # ------- #
         try:
@@ -206,16 +206,16 @@ if __name__ == '__main__':
             # ------- # Arguments -> -nt -> new_tag # ------- #
             elif args.new_tag:
                 if str(args.new_tag) == str('1'):
-                    print('Init activated MAJOR release.')
+                    log.printLog(0,'Init activated MAJOR release.')
                 if str(args.new_tag) == str('2'):
-                    print('Init activated MINOR release.')
+                    log.printLog(0,'Init activated MINOR release.')
                 if str(args.new_tag) == str('3'):
-                    print( 'Init activated PATCH release.')
+                    log.printLog(0,'Init activated PATCH release.')
                 GitHubManager().createAutoTagToGit(setenceToReleaseTypeStr=_sentence,
                                                    updateRevistionTypeStr=args.new_tag,)
         except TypeError:
-            print( 'Sentece was not giving , please insert a sentence.')
+            log.printLog(2,'Sentece was not giving , please insert a sentence.')
     # git folder not exists in the folder
     else:
-        print( f'git repo folder is not in folder [{_folderToSearchTheGitFolder}] ,Try to run git clone and start again.')
+        log.printLog(2, f'git repo folder is not in folder [{_folderToSearchTheGitFolder}] ,Try to run git clone and start again.')
   
