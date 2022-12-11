@@ -21,9 +21,7 @@ log = logger()
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 pathScript = os.path.join(pathScriptFolder, scriptName)
-# ------- # Class -> tamplateClass # ------- #
-
-
+# ------- # Class -> Utils # ------- #
 class Utils():
     """
     - Exaplain :
