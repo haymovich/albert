@@ -206,11 +206,11 @@ if __name__ == '__main__':
             # ------- # Arguments -> -nt -> new_tag # ------- #
             elif args.new_tag:
                 if str(args.new_tag) == str('1'):
-                    log.printLog(7,'Init activated MAJOR release.','MAJOR-UPDATE',4)
+                    log.printLog(7,'Init activated MAJOR release.','Major-Update',4)
                 if str(args.new_tag) == str('2'):
-                    log.printLog(7,'Init activated MINOR release.','MAJOR-UPDATE',4)
+                    log.printLog(7,'Init activated MINOR release.','Minor-Update',4)
                 if str(args.new_tag) == str('3'):
-                    log.printLog(7,'Init activated PATCH release.','MAJOR-UPDATE',4)
+                    log.printLog(7,'Init activated PATCH release.','Path-Update',4)
                 GitHubManager().createAutoTagToGit(setenceToReleaseTypeStr=_sentence,
                                                    updateRevistionTypeStr=args.new_tag,)
         except TypeError:
