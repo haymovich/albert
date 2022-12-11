@@ -77,7 +77,9 @@ class Reader():
         self.blackListDirsForMapper = [
             '.git', '__pycache__', '.cpython-', '.log','__init__.py']
         self.pathProjectParser = projectMapper()
-        self.pathAlbertConfigFiles = self.pathProjectParser['config/albert.json']
+        self.pathAlbertConfigFiles = self.pathProjectParser['config/albert_tmp.json']
+        if 'config/albert.json' in self.pathProjectParser.keys():
+            self.pathAlbertConfigFiles = self.pathProjectParser['config/albert.json']
 
     # ------- # Methods -> readAlbertConfigFiles # ------- #
     def readAlbertConfigFiles(self):

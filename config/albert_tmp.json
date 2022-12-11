@@ -41,10 +41,6 @@
    "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
    "lastUpdateTime": "2022-12-12 00:25:40.907095"
   },
-  "-reader": {
-   "path": "/Users/barhaymovich/tools/dev/albert/lib/reader.py",
-   "lastUpdateTime": "2022-12-12 00:25:40.933920"
-  },
   "-git": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
    "lastUpdateTime": "2022-12-12 00:25:40.920131"
