@@ -70,8 +70,16 @@ class AliasManager():
                 results = [os.path.join(
                     f'{mapHomeDirName[osSystemType]}{i}', str(item)) for i in _extractUsers]
             return results
+    # ------- # method -> injectAlbertAlias # ------- #
+    def injectAlbertAlias(self):
+        log.printLog(0,'Start update albert alias')
+        _mapper = {
+            'alb':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+            'albert':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+        }
+        for aliasName,aliasVal in _mapper.items():
+            self.injectNewAlias(aliasName,aliasVal)
     # ------- # global function -> checkOsSystem # ------- #
-
     def aliasSyntaxBuilder(self, aliasNameTypeStr: str, aliasValueTypeStr: str):
         """
         check if alias name and value is giving && return builder
@@ -154,9 +162,4 @@ if __name__ == "__main__":
                 argsWrapper[0], argsWrapper[1]))
     # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
     elif args.inject_albert:
-        _mapper = {
-            'alb':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
-            'albert':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
-        }
-        for aliasName,aliasVal in _mapper.items():
-            AliasManager().injectNewAlias(aliasName,aliasVal)
+        AliasManager().injectAlbertAlias()

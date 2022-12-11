@@ -132,16 +132,15 @@ class Utils():
             log.printLog(
                 2, 'Due to missing libary , re-lunch the script , script end with error.')
             exit(0)
-            
+
     # ------- # Methods -> installLib # ------- #
     def installLib(self):
-        log.printLog(0,f'Start install lib from {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"requirements.txt")}')
+        log.printLog(
+            0, f'Start install lib from {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"requirements.txt")}')
         os.system(r'sudo python3 -m pip install --upgrade pip')
         os.system(r'sudo python3 -m pip install --upgrade pip')
         os.chdir(Reader().extractorFilePathFromAlbertConfigFiles('config'))
         os.system(r'sudo pip install -r requirements.txt')
-
-
     # ------- # Methods -> getAutoTime # ------- #
 
     def getAutoTime(
