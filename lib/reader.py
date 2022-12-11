@@ -4,12 +4,12 @@
 
 <SCRIPT EXAPLAIN>
 """
+import json
 import argparse
 import subprocess
 import os
 import datetime
 import sys
-from utils import Utils
 
 # ------- # Outside Variable - visual && usefull variable # ------- #
 startTime = datetime.datetime.now()
@@ -77,10 +77,20 @@ class Reader():
         self.pathProjectParser = projectMapper()
         self.pathAlbertConfigFiles = self.pathProjectParser['config/albert.json']
 
+    # ------- # Methods -> readAlbertConfigFiles # ------- #
+    def readAlbertConfigFiles(self):
+        """Read any json file"""
+        return self.jsonReader(pathForFile=self.pathAlbertConfigFiles)
+    
     # ------- # Methods -> jsonReader # ------- #
     def jsonReader(self, pathForFile: str):
-        """Read any json file"""
-        return Utils().jsonLoader(pathForFile=pathForFile)
+        """Read any json file """
+        _res = False
+        if not os.path.exists(pathForFile):
+            print(f'Please make sure json file [{pathForFile}] exists.')
+        with open(pathForFile,'r') as jsonReader:
+            _res = json.load(jsonReader)
+        return _res
     
     # ------- # Methods -> returnAllAlbertConfigFiles # ------- #
     def returnAllAlbertConfigFiles(self):

@@ -11,7 +11,6 @@ import sys
 import __main__
 import logging
 from reader import Reader
-import coloredlogs
 
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-lg'

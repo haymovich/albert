@@ -27,15 +27,23 @@
  "crawler": {
   "-git": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
-   "lastUpdateTime": "2022-12-11 02:13:21.735970"
+   "lastUpdateTime": "2022-12-11 12:03:17.330466"
   },
   "-lg": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
-   "lastUpdateTime": "2022-12-11 01:55:41.940172"
+   "lastUpdateTime": "2022-12-11 12:03:17.334465"
   },
   "-wj": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
-   "lastUpdateTime": "2022-12-11 02:13:21.746776"
+   "lastUpdateTime": "2022-12-11 12:03:17.345054"
+  },
+  "-alb": {
+   "path": "/Users/barhaymovich/tools/dev/albert/albery.py",
+   "lastUpdateTime": "2022-12-11 12:03:17.313475"
+  },
+  "-alias": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2022-12-11 12:03:17.317729"
   }
  },
  "spreadPaths": {}
