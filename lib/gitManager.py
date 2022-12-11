@@ -177,7 +177,7 @@ class GitHubManager:
                 tagVersion = 'v1.0.0'
             # Create auto tag to git
             subprocess.call(
-                ["git", "tag", "-a", "-m", f"Release from adam framework - {setenceToReleaseTypeStr}", f"{tagVersion}"])
+                ["git", "tag", "-a", "-m", f"{setenceToReleaseTypeStr}", f"{tagVersion}"])
             subprocess.call(["git", "push", "origin", f"--tags"])
             self.pushBasicToGithub(
                 f'Release from tag method --> {setenceToReleaseTypeStr}')
