@@ -21,6 +21,7 @@ if osSystemType == 3 or osSystemType == 4:
     log.printLog(
         2, 'Please make sure you on Linux/Mac os - alias cannot work on Windows / diffrent OS.')
     sys.exit(0)
+    
 # ------- # Outside function - configParser # ------- #
 def configParser():
     """
@@ -36,12 +37,10 @@ def configParser():
                         help="inject albert into system", action='store_true', default=False)
     return parser
 
-
 # ------- # global -> outside variable # ------- #
 scriptName = os.path.basename(__file__)
+
 # ------- # Class -> AliasManager # ------- #
-
-
 class AliasManager():
     """
     - Exaplain :
@@ -61,7 +60,7 @@ class AliasManager():
         mapHomeDirName = {
             1: "/home/",  # linux
             2: "/Users/",  # mac,
-            3: "/root/" # for root
+            3: "/root/"  # for root
         }
         if item == '.bash_profile':
             pass
@@ -70,17 +69,20 @@ class AliasManager():
             if _extractUsers:
                 results = [os.path.join(
                     f'{mapHomeDirName[osSystemType]}{i}', str(item)) for i in _extractUsers]
-                results = [i.replace('/home/root/',"/root/") for i in results ]
+                results = [i.replace(
+                    '/home/root/', "/root/").replace("/Users/root/", "/root/") for i in results]
         return results
+    
     # ------- # method -> injectAlbertAlias # ------- #
     def injectAlbertAlias(self):
-        log.printLog(0,'Start update albert alias')
+        log.printLog(0, 'Start update albert alias')
         _mapper = {
-            'alb':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
-            'albert':Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+            'alb': Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
+            'albert': Reader().extractorFilePathFromAlbertConfigFiles('albert/albert.py'),
         }
-        for aliasName,aliasVal in _mapper.items():
-            self.injectNewAlias(aliasName,aliasVal)
+        for aliasName, aliasVal in _mapper.items():
+            self.injectNewAlias(aliasName, aliasVal)
+            
     # ------- # global function -> checkOsSystem # ------- #
     def aliasSyntaxBuilder(self, aliasNameTypeStr: str, aliasValueTypeStr: str):
         """
@@ -94,53 +96,68 @@ class AliasManager():
             _aliasBuilder = f"alias {_aliasName}='{_aliasValue}'"
         return _aliasBuilder
 
+    # ------- # global function -> checkExistsAlias # ------- #
+    def checkExistsAlias(self, bashrcPath: str, aliasSyntx: str):
+        """
+        Check if alias is exsits , return True/False
+        """
+        _commnad = f'cat {bashrcPath} | grep "{aliasSyntx}"'
+        _checkAlias = Utils().deployCommandSubprocess(_commnad, enablePrint=False)
+        _res = False
+        if _checkAlias:
+            _res = True
+
+        return _res
+    
     # ------- # global function -> injectNewAlias # ------- #
     def injectNewAlias(self,
                        aliasNameToAddTypeStr: str = False,
                        aliasValueToAddTypeStr: str = False):
         # init basic var
         aliasSynatx = ''
-        tempListForHoldDataTypeList = []
         fileNameToRewrite = ['.bashrc', '.bash_profile']
         pathBashProfile = list(
             map(self.returnBashProfileFiles, fileNameToRewrite))[0]
         _res = False
         aliasSynatx = self.aliasSyntaxBuilder(
             aliasNameToAddTypeStr, aliasValueToAddTypeStr)
+
         if not aliasSynatx:
             log.printLog(2, 'Cannot identify alias syntax')
             sys.exit(0)
 
         # open['.bashrc', '.bash_profile'] and check if alias is not there.
         for eachItem in pathBashProfile:
-            if eachItem:
-                try:
-                    with open(eachItem, 'r') as readBashProfile:
-                        for eachRow in readBashProfile.readlines():
-                            # get rid of the '\n' for each row
-                            eachRowWithoutNewLineError = eachRow.replace(
-                                '\n', '')
-                            tempListForHoldDataTypeList.append(
-                                eachRowWithoutNewLineError)
-                    # check if giving item is in the file
-                    if aliasSynatx not in tempListForHoldDataTypeList:
-                        tempListForHoldDataTypeList.append(aliasSynatx)
 
-                    # write
-                    with open(eachItem, 'w') as writeNewDataToBashProfile:
-                        for eachRow in tempListForHoldDataTypeList:
-                            writeNewDataToBashProfile.write(f'{eachRow}\n')
+            if eachItem and os.path.exists(eachItem):
+                try:
+
+                    _checkAlias = self.checkExistsAlias(eachItem,aliasSynatx)
+                    if not _checkAlias:
+                        log.printLog(
+                            9, f'Start install alias [{aliasNameToAddTypeStr}] into [{eachItem}]')
+                        _command = f'sudo echo "{aliasSynatx}" >> {eachItem}'
+                        os.system(_command)
+                        # recheck
+                        _checkAlias = self.checkExistsAlias(eachItem,aliasSynatx)
+                        if not _checkAlias:
+                            log.printLog(
+                                2, f'Seems like there been an error with try to install alias [{aliasSynatx}] into [{eachItem}]')
+                        else:
+                            log.printLog(
+                                1, f'Succesfully write alias name [{aliasNameToAddTypeStr}] in paths [{pathBashProfile}]')
+
+                    else:
+                        log.printLog(
+                            1, f'Succesfully write alias name [{aliasNameToAddTypeStr}] in paths [{pathBashProfile}]')
+
                     # source
                     os.system(f'source {eachItem}')
-                    # clear old data
-                    tempListForHoldDataTypeList.clear()
-                    _res = True
+
                 except FileNotFoundError as e:
                     log.printLog(
                         2, f'Cannot find [{e}] - go to next bashrc file')
-        if _res:
-            log.printLog(
-                1, f'Succesfully write alias name [{aliasNameToAddTypeStr}] in paths [{pathBashProfile}]')
+
         return _res
 
 
@@ -150,7 +167,8 @@ if __name__ == "__main__":
     # alb -alias -name calb -value cd /Users/barhaymovich/tools/dev/albert
 
     args = configParser().parse_args()
-    argsWrapper = [args.alias_name, " ".join(args.alias_value) if args.alias_value else False]
+    argsWrapper = [args.alias_name, " ".join(
+        args.alias_value) if args.alias_value else False]
     # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
     if argsWrapper[0] and argsWrapper[1]:
         _aliasBuilder = AliasManager().aliasSyntaxBuilder(

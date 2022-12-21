@@ -6,6 +6,7 @@
 create user command for improve workflow
 ------------
 alb -pipe -show
+alb -pipe -example
 """
 import argparse
 import time
@@ -40,8 +41,8 @@ startTime = datetime.datetime.now()
 dashLine = '-------------------------------------------'
 confObject = configparser.ConfigParser()
 log = logger(False)
-# ------- # Try - Import paramiko # ------- #
-Utils().checkLib()
+# # ------- # Try - Import paramiko # ------- #
+# Utils().checkLib()
 # ------- # Outside Dynamic Variable - scipt args # ------- #
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
@@ -759,6 +760,7 @@ class Pipeline():
         def triggerUserReadForAllPipes():
             _enableWhile = True
             usersPipes = sorted(os.listdir(self.pathFolderUsersCommandExec))
+            usersPipes.remove("username_Default")
             usersPipes.append('Quit')
             while _enableWhile:
                 for n, i in enumerate(usersPipes, start=1):
@@ -788,7 +790,7 @@ class Pipeline():
     # ------- # Methods -> descriptionReading # ------- #
     def deployMenu(self, pathToPick: str):
 
-        os.system('sudo python3 -m pip install simple-term-menu')
+        # os.system('sudo python3 -m pip install simple-term-menu')
         os.system('clear')
         from simple_term_menu import TerminalMenu
 
