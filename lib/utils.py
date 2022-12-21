@@ -172,7 +172,7 @@ class Utils():
 
     # ------- # Methods - changeTerminalName # ------- #
     def extractAllUsernamesInCurrentMachine(self):
-        blackList = ['daemon', 'root', 'nobody']
+        blackList = ['daemon', 'nobody']
         mapCommads = {
             1: "getent passwd | grep bin/bash | cut -d: -f1",  # linux
             2: "dscl . list /Users | grep -v _",  # mac
