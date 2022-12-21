@@ -60,7 +60,8 @@ class AliasManager():
         results = []
         mapHomeDirName = {
             1: "/home/",  # linux
-            2: "/Users/"  # mac
+            2: "/Users/",  # mac,
+            3:"/root/" # for root
         }
         if item == '.bash_profile':
             pass
