@@ -61,7 +61,7 @@ class AliasManager():
         mapHomeDirName = {
             1: "/home/",  # linux
             2: "/Users/",  # mac,
-            3:"/root/" # for root
+            3: "/root/" # for root
         }
         if item == '.bash_profile':
             pass
@@ -70,7 +70,8 @@ class AliasManager():
             if _extractUsers:
                 results = [os.path.join(
                     f'{mapHomeDirName[osSystemType]}{i}', str(item)) for i in _extractUsers]
-            return results
+                results = [i.replace('/home/root/',"/root/") for i in results ]
+        return results
     # ------- # method -> injectAlbertAlias # ------- #
     def injectAlbertAlias(self):
         log.printLog(0,'Start update albert alias')
