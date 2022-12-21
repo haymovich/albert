@@ -55,6 +55,8 @@ def configParser():
     """
     """
     parser = argparse.ArgumentParser()
+    parser.add_argument("-example", "--example", help="Run to show example ",
+                        action='store_true', required=False, default='Default')
     # must
     parser.add_argument("-u", "--user", help="run on which user ? ",
                         type=str, required=False, default='Default')
@@ -1123,6 +1125,14 @@ if __name__ == "__main__":
     elif args.show:
         Pipeline(pipelineName='default',
                  username=_checkArgs[1]).pipeReaderForUsers(_checkArgs[1])
+    elif args.example:
+        _command = " ".join(Utils().searchAlbertInisdeWords('alb -pipe -u admin -p sample -e'))
+        log.printLog(0,'Showing example ...')
+        log.printLog(0,f'Deploy the command -> {_command} in 3 sec')
+        time.sleep(3)
+        Utils().spliter()
+        os.system(_command)
+        Utils().spliter()
     else:
         print('error')
         exit(0)
