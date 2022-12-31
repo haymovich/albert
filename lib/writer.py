@@ -48,17 +48,17 @@ class Writer():
 
     # ------- # Methods -> writeAnyJsonFile # ------- #
     def writeAnyJsonFile(self,jsonFileLocationTypeStr:str,dataToWriteTypeDict:dict):
-        with open(jsonFileLocationTypeStr,'w') as writeJsonFile:
+        with open(jsonFileLocationTypeStr,'wb') as writeJsonFile:
             json.dump(dataToWriteTypeDict,writeJsonFile,indent=1)
             
     # ------- # Methods -> writeAnyJsonFile # ------- #
     def _writeAnyJsonFile(self,jsonFileLocationTypeStr:str,dataToWriteTypeDict:dict):
-        with open(jsonFileLocationTypeStr,'w') as writeJsonFile:
+        with open(jsonFileLocationTypeStr,'wb') as writeJsonFile:
             json.dump(dataToWriteTypeDict,writeJsonFile,indent=1)
             
     # ------- # Methods -> writeAnyTxtFile # ------- #
     def writeAnyTxtFile(self,textPathLoactionTypeStr:str,dataToWriteTypeList:list):
-        with open(textPathLoactionTypeStr,'w') as writeTextFile:
+        with open(textPathLoactionTypeStr,'wb') as writeTextFile:
             for _eachRow in dataToWriteTypeList:
                 writeTextFile.write(str(_eachRow).strip()+'\n')
 
