@@ -1,5 +1,3 @@
-
-
 {
  "remote_creds": {
   "creds_1": {
@@ -26,6 +24,43 @@
    "192.168.1"
   ]
  },
- "crawler": {},
+ "crawler": {
+  "-alb": {
+   "path": "/Users/barhaymovich/tools/dev/albert/albert.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.135836"
+  },
+  "-setup": {
+   "path": "/Users/barhaymovich/tools/dev/albert/setup.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.139962"
+  },
+  "-alias": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.148379"
+  },
+  "-bak": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/backup.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.152419"
+  },
+  "-git": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.163730"
+  },
+  "-lg": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.171229"
+  },
+  "-reader": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/reader.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.175184"
+  },
+  "-pipe": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/pipeline.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.183216"
+  },
+  "-wj": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
+   "lastUpdateTime": "2022-12-31 19:51:33.190992"
+  }
+ },
  "services": {}
 }

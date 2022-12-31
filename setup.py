@@ -18,8 +18,9 @@ log = logger(False)
 
 if __name__ == "__main__":
     _commamds = [
-        f'sudo cp -r {Reader().extractorFilePathFromAlbertConfigFiles("config/albert_tmp.json")} {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"albert.json")}',
-        f'sudo chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}',
+        
+        f'cp -r {Reader().extractorFilePathFromAlbertConfigFiles("config/albert_tmp.json")} {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"albert.json")}',
+        f'chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}',
     ]
     for _eachCommand in _commamds:
         os.system(_eachCommand)
