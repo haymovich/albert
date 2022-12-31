@@ -27,39 +27,39 @@
  "crawler": {
   "-alb": {
    "path": "/Users/barhaymovich/tools/dev/albert/albert.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.135836"
+   "lastUpdateTime": "2022-12-31 20:01:29.584645"
   },
   "-setup": {
    "path": "/Users/barhaymovich/tools/dev/albert/setup.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.139962"
+   "lastUpdateTime": "2022-12-31 20:01:29.588605"
   },
   "-alias": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.148379"
+   "lastUpdateTime": "2022-12-31 20:01:29.596503"
   },
   "-bak": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/backup.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.152419"
+   "lastUpdateTime": "2022-12-31 20:01:29.600256"
   },
   "-git": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.163730"
+   "lastUpdateTime": "2022-12-31 20:01:29.611175"
   },
   "-lg": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.171229"
+   "lastUpdateTime": "2022-12-31 20:01:29.618596"
   },
   "-reader": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/reader.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.175184"
+   "lastUpdateTime": "2022-12-31 20:01:29.622227"
   },
   "-pipe": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/pipeline.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.183216"
+   "lastUpdateTime": "2022-12-31 20:01:29.630046"
   },
   "-wj": {
    "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
-   "lastUpdateTime": "2022-12-31 19:51:33.190992"
+   "lastUpdateTime": "2022-12-31 20:01:29.637565"
   }
  },
  "services": {}

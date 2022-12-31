@@ -31,6 +31,7 @@ if __name__ == "__main__":
     Utils().spliter()
     AliasManager().injectAlbertAlias() # set alias for alb /albert --> FolderPath/albert.py
     Utils().spliter()
+    Utils().deployCommandSubprocess("sudo chown -R $(echo $USER) ./ ")
 
     log.printLog(1,'Finish install all albert req files / alias / etc - it\'s recomended to do bash after.')
     
