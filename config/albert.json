@@ -26,40 +26,40 @@
  },
  "crawler": {
   "-alb": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/tests/albert.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.811215"
+   "path": "/home/jenkins/albert/albert.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.464932"
   },
   "-setup": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/setup.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.809652"
+   "path": "/home/jenkins/albert/setup.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.468634"
   },
   "-alias": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.814699"
+   "path": "/home/jenkins/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.475859"
   },
   "-bak": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/backup.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.816434"
+   "path": "/home/jenkins/albert/lib/backup.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.479098"
   },
   "-git": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/gitManager.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.821310"
+   "path": "/home/jenkins/albert/lib/gitManager.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.482736"
   },
   "-lg": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/logger.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.824426"
-  },
-  "-reader": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/reader.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.825996"
-  },
-  "-wj": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/writer.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.832977"
+   "path": "/home/jenkins/albert/lib/logger.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.486423"
   },
   "-pipe": {
-   "path": "/Users/bar.haymovich/Desktop/tools/dev/albert/lib/pipeline.py",
-   "lastUpdateTime": "2023-01-06 00:39:04.829563"
+   "path": "/home/jenkins/albert/lib/pipeline.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.493931"
+  },
+  "-reader": {
+   "path": "/home/jenkins/albert/lib/reader.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.497791"
+  },
+  "-wj": {
+   "path": "/home/jenkins/albert/lib/writer.py",
+   "lastUpdateTime": "2023-01-05 22:45:54.516079"
   }
  },
  "services": {}
