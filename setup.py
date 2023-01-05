@@ -22,16 +22,17 @@ if __name__ == "__main__":
         f'cp -r {Reader().extractorFilePathFromAlbertConfigFiles("config/albert_tmp.json")} {os.path.join(Reader().extractorFilePathFromAlbertConfigFiles("config"),"albert.json")}',
         f'chmod -R 777 {Reader().extractorFilePathFromAlbertConfigFiles("albert")}',
     ]
+
     for _eachCommand in _commamds:
         os.system(_eachCommand)
-    # start install /setup
+    # # start install /setup
     Utils().spliter()
     Utils().installLib() # install all neded lib
     Utils().checkLib() # check if all lib are install
     Utils().spliter()
     AliasManager().injectAlbertAlias() # set alias for alb /albert --> FolderPath/albert.py
     Utils().spliter()
-    Utils().deployCommandSubprocess("sudo chown -R $(echo $USER) ./ ")
-
+    Utils().deployCommandSubprocess("chown -R $(echo $USER) .",True)
+    AliasManager().injectAlbertIntoPathVar()
     log.printLog(1,'Finish install all albert req files / alias / etc - it\'s recomended to do bash after.')
     

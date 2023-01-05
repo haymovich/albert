@@ -103,7 +103,7 @@ class Reader():
     # ------- # Methods -> showAllKeysInConfigFilesMapper # ------- #
     def showAllKeysInConfigFilesMapper(self):
         for k,v in self.pathProjectParser.items():        
-            _findSpace = 45 - len(f'Arguemnt [{k}]')
+            _findSpace = 50 - len(f'Arguemnt [{k}]')
             print(f'[{k}] {" "*_findSpace} is eq to [{v}]')
             
     # ------- # Methods -> readAnyTxtFile # ------- #
@@ -122,10 +122,12 @@ class Reader():
 
         """
         _res = False
-        if keyToExtract in self.pathProjectParser.keys():
-            _res = self.pathProjectParser[keyToExtract]
+        _keyToExtract = 'albert/albert.py' if keyToExtract == 'albert.py' else keyToExtract
+        if _keyToExtract in self.pathProjectParser.keys():
+            _res = self.pathProjectParser[_keyToExtract]
+            
         else:
-            print(f'Error , cannot file key [{keyToExtract}]')
+            print(f'Error , cannot file key [{_keyToExtract}]')
         return _res
 
 

@@ -1109,10 +1109,10 @@ if __name__ == "__main__":
 
             _pathFolderLoggingData = os.path.join(Reader().extractorFilePathFromAlbertConfigFiles(
                 "log"), 'pipeline_logging_data', f'pipeUser_{_checkArgs[1]}', f'pipeName_{_checkArgs[0]}', f'PipeId_{scriptRandomNumber}')
-            # _pathFileLoggingData = os.path.join(
-            #     _pathFolderLoggingData, 'pipeline_logging.txt')
-            # log.printLog(
-            #     0, f'Logging data is going to save on this folder [{_pathFileLoggingData}]')
+            _pathFileLoggingData = os.path.join(
+                _pathFolderLoggingData, 'pipeline_logging.txt')
+            log.printLog(
+                0, f'Logging data is going to save on this folder [{_pathFileLoggingData}]')
 
             _pipelineInstations.readPipelineFile()
             _pipelineInstations.execPipeline(args.section_run, args.arguments)

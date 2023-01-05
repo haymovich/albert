@@ -68,8 +68,8 @@ class Utils():
 
         else:
             return False
-    # ------- # Methods -> spliter # ------- #
 
+    # ------- # Methods -> spliter # ------- #
     def spliter(self):
         log.printLog(7, self.dashLine, 'Spliter')
 
@@ -87,8 +87,8 @@ class Utils():
         if returnDataAndTimeNoMilsec:
             _strftime = '%d-%m-%Y_%H-%M-%S'
         return datetime.datetime.now().strftime(_strftime)
+    
     # ------- # Methods -> searchAlbertInisdeWords # ------- #
-
     def searchAlbertInisdeWords(self, strToSearch: str):
         _rawMapperStr = strToSearch.split(' ')
         _fullMapperStr = []

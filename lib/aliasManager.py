@@ -6,6 +6,7 @@
 <SCRIPT EXAPLAIN>
 """
 import os
+import subprocess
 import argparse
 from logger import logger
 from reader import Reader
@@ -108,7 +109,30 @@ class AliasManager():
             _res = True
 
         return _res
-    
+
+    # ------- # global function -> injectAlbertIntoPathVar # ------- #
+    def injectAlbertIntoPathVar(self):
+        # init basic vars
+        _paths = ['/usr/local/bin']
+        _status = False
+        
+        for _ in _paths:
+            if os.path.exists(_):
+                if 'albert.py' in os.listdir(_):
+                    _status = True
+                    break
+                else:
+                    _createLinkCommand = f'sudo ln -s {Reader().extractorFilePathFromAlbertConfigFiles("albert.py")} {_}'
+                    # print(_createLinkCommand)
+                    log.printLog(0,f'Create new sym into path [{_}]')
+                    os.system(_createLinkCommand)
+                    _status = True
+        if _status:
+            log.printLog(1,'Succsfully inject albert.py into $PATH folder var')
+        else:
+            log.printLog(2,f'Cannot inject albert.py into $PATH , please make sure these path are exists [{_paths}]')
+        return _status
+        
     # ------- # global function -> injectNewAlias # ------- #
     def injectNewAlias(self,
                        aliasNameToAddTypeStr: str = False,
@@ -118,6 +142,7 @@ class AliasManager():
         fileNameToRewrite = ['.bashrc', '.bash_profile']
         pathBashProfile = list(
             map(self.returnBashProfileFiles, fileNameToRewrite))[0]
+        
         _res = False
         aliasSynatx = self.aliasSyntaxBuilder(
             aliasNameToAddTypeStr, aliasValueToAddTypeStr)
@@ -152,7 +177,8 @@ class AliasManager():
                             1, f'Succesfully write alias name [{aliasNameToAddTypeStr}] in paths [{pathBashProfile}]')
 
                     # source
-                    os.system(f'source {eachItem}')
+                    print(f'source {eachItem}')
+                    (f'source {eachItem}')
 
                 except FileNotFoundError as e:
                     log.printLog(
