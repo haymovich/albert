@@ -4,8 +4,10 @@
 
 <SCRIPT EXAPLAIN>
 alb -reader -show   
+albert.py -reader -mapper $(pwd)
 """
 import json
+import pprint
 import argparse
 import subprocess
 import os
@@ -23,9 +25,9 @@ scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 pathScript = os.path.join(pathScriptFolder, scriptName)
 # ------- # Outside function - projectMapper # ------- #
-def projectMapper(returnOnlyFilePath:bool=False):
+def projectMapper(returnOnlyFilePath:bool=False,pathForSearching:str=os.path.dirname(pathScriptFolder)):
     """loop over all project folder and automatic return all files / folder exists."""
-    pathAlbertHomeDir = os.path.dirname(pathScriptFolder)
+    pathAlbertHomeDir = pathForSearching
     blackListDirsForMapper = [
         '.git', '__pycache__', '.cpython-', '.log','.md','__init__.py']
     pathProjectParser = {}
@@ -59,6 +61,8 @@ def configParser():
     parser = argparse.ArgumentParser()
     parser.add_argument("-show", "--show", help="show examples",
                         action='store_true', required=False, default=False)
+    parser.add_argument("-mapper", "--mapper", help="map entire folder include sub folder - return dict",
+                        required=False, default=False)
     return parser
 # ------- # Class -> Reader # ------- #
 
@@ -143,3 +147,7 @@ if __name__ == "__main__":
         # print("Reader().showAllKeysInConfigFilesMapper()")
         Reader().showAllKeysInConfigFilesMapper()
         # pass
+    elif args.mapper and os.path.exists(args.mapper):
+        # print(args.mapper)
+        pprint.pprint(projectMapper(False,args.mapper),indent=1)
+        
