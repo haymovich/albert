@@ -52,9 +52,8 @@ def projectMapper(returnOnlyFilePath:bool=False,pathForSearching:str=os.path.dir
         return pathProjectParserOnlyFiles
     
     return pathProjectParser
+    
 # ------- # Outside function - configParser # ------- #
-
-
 def configParser():
     """
     """
@@ -64,9 +63,8 @@ def configParser():
     parser.add_argument("-mapper", "--mapper", help="map entire folder include sub folder - return dict",
                         required=False, default=False)
     return parser
+    
 # ------- # Class -> Reader # ------- #
-
-
 class Reader():
     """
     - Exaplain :

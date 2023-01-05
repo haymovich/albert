@@ -87,7 +87,38 @@ class Utils():
         if returnDataAndTimeNoMilsec:
             _strftime = '%d-%m-%Y_%H-%M-%S'
         return datetime.datetime.now().strftime(_strftime)
-    
+
+    # ------- # Methods -> projectMapper # ------- #
+    def projectMapper(self,returnOnlyFilePath:bool=False,pathForSearching:str=False):
+        """loop over all project folder and automatic return all files / folder exists."""
+        # init basic vars
+        pathAlbertHomeDir = pathForSearching
+        blackListDirsForMapper = [
+            '.git', '__pycache__', '.cpython-', '.log','.md','__init__.py']
+        pathProjectParser = {}
+        pathProjectParserOnlyFiles = []
+        
+        if pathAlbertHomeDir:
+            for dirs, _, files in os.walk(pathAlbertHomeDir, topdown=True):
+                _dirBaseName = os.path.basename(dirs)
+                if not [i for i in blackListDirsForMapper if i in dirs]:
+                    # files
+                    for file in files:
+                        _filePath = os.path.join(dirs, file)
+                        if not [i for i in blackListDirsForMapper if i in _filePath]:
+                            if file not in pathProjectParser.keys():
+                                dirName = os.path.dirname(
+                                    _filePath).rsplit("/")[::-1][0]
+                                pathProjectParser[f'{dirName}/{file}'] = _filePath
+                                if '.' in  _filePath:
+                                    pathProjectParserOnlyFiles.append(_filePath)
+                    # folders
+                    if _dirBaseName not in pathProjectParser.keys():
+                        pathProjectParser[_dirBaseName] = dirs+'/'
+        if returnOnlyFilePath:
+            return pathProjectParserOnlyFiles
+        
+        return pathProjectParser
     # ------- # Methods -> searchAlbertInisdeWords # ------- #
     def searchAlbertInisdeWords(self, strToSearch: str):
         _rawMapperStr = strToSearch.split(' ')
