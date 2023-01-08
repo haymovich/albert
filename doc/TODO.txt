@@ -1,2 +1,2 @@
 Here will be simple TODO action for the project.
-1. when using logger - no saving even due log(True) in object. - need to fix now.
+1. when using logger - no saving even due log(True) in object. - need to fix.
