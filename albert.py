@@ -18,7 +18,7 @@ class ThrowingArgumentParser(argparse.ArgumentParser):
         raise ArgumentParserError(message)
 startTime = datetime.datetime.now()
 dashLine = '-------------------------------------------'
-log = logger(enableSave=False)
+log = logger(False)
 # ------- # Outside Dynamic Variable - scipt args # ------- #
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
