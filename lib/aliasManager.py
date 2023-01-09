@@ -139,10 +139,14 @@ class AliasManager():
                        aliasValueToAddTypeStr: str = False):
         # init basic var
         aliasSynatx = ''
-        fileNameToRewrite = ['.bashrc', '.bash_profile']
-        pathBashProfile = list(
-            map(self.returnBashProfileFiles, fileNameToRewrite))[0]
-        
+        fileNameToRewrite = ['.bashrc', '.bash_profile','.zshrc']
+        _pathBashProfile = list(
+            map(self.returnBashProfileFiles, fileNameToRewrite))
+        pathBashProfile = set()
+        for _ in _pathBashProfile:
+            if _:
+                for _eachElem in _:
+                    pathBashProfile.add(_eachElem)
         _res = False
         aliasSynatx = self.aliasSyntaxBuilder(
             aliasNameToAddTypeStr, aliasValueToAddTypeStr)
@@ -153,7 +157,6 @@ class AliasManager():
 
         # open['.bashrc', '.bash_profile'] and check if alias is not there.
         for eachItem in pathBashProfile:
-
             if eachItem and os.path.exists(eachItem):
                 try:
 

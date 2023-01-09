@@ -1,1 +1,0 @@
-/Users/bar.haymovich/Desktop/tools/dev/albert/albert.py

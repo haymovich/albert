@@ -26,40 +26,44 @@
  },
  "crawler": {
   "-alb": {
-   "path": "/home/jenkins/albert/albert.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.163600"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/albert.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.592461"
   },
   "-setup": {
-   "path": "/home/jenkins/albert/setup.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.167774"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/setup.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.593458"
   },
   "-alias": {
-   "path": "/home/jenkins/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.175846"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.595456"
   },
   "-bak": {
-   "path": "/home/jenkins/albert/lib/backup.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.180399"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/backup.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.596504"
+  },
+  "-remote_command": {
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/remoteCommand.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.598525"
   },
   "-git": {
-   "path": "/home/jenkins/albert/lib/gitManager.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.185168"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/gitManager.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.599499"
   },
   "-lg": {
-   "path": "/home/jenkins/albert/lib/logger.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.189886"
-  },
-  "-pipe": {
-   "path": "/home/jenkins/albert/lib/pipeline.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.199244"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/logger.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.601469"
   },
   "-reader": {
-   "path": "/home/jenkins/albert/lib/reader.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.203623"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/reader.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.602392"
+  },
+  "-pipe": {
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/pipeline.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.604331"
   },
   "-wj": {
-   "path": "/home/jenkins/albert/lib/writer.py",
-   "lastUpdateTime": "2023-01-05 22:58:31.225766"
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/writer.py",
+   "lastUpdateTime": "2023-01-09 15:31:22.606265"
   }
  },
  "services": {}
