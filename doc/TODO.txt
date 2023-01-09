@@ -7,3 +7,4 @@ Here will be simple TODO action for the project.
 6. finish script remoteCommand - WIP
 7. finish ping check
 
+

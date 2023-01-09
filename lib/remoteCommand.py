@@ -145,3 +145,4 @@ if __name__ == "__main__":
         print(RemoteCommand('PASS','USERNAME','PORTNUMBER').sendCommand("IPADD",'HOSTNAME','LINUX'))
 
 
+

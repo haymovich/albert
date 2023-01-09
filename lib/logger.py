@@ -235,3 +235,4 @@ if __name__ == "__main__":
     log = logger(True)
     log.printLog(2, 'test')
     log.printLog(0, 'test')
+
