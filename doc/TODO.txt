@@ -1,2 +1,7 @@
 Here will be simple TODO action for the project.
 1. when using logger - no saving even due log(True) in object. - need to fix.
+
+1. Fix log : when save log , nothing is saving - fix it : WIP
+2. git : add the option to create new branch in the script when want to
+3. git pipeline : add git pipeline to regualr push and regular new branch
+4. tests : create basic workflow for test when trigger any release
