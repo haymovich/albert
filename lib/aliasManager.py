@@ -83,6 +83,7 @@ class AliasManager():
         }
         for aliasName, aliasVal in _mapper.items():
             self.injectNewAlias(aliasName, aliasVal)
+        self.injectNewAlias('calb',f'cd {Reader().extractorFilePathFromAlbertConfigFiles("albert")}')
             
     # ------- # global function -> checkOsSystem # ------- #
     def aliasSyntaxBuilder(self, aliasNameTypeStr: str, aliasValueTypeStr: str):

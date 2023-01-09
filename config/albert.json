@@ -1,70 +1,29 @@
 {
- "remote_creds": {
-  "creds_1": {
-   "username": "username",
-   "password": "password",
-   "port": "22",
-   "comment": "None"
-  },
-  "creds_2": {
-   "username": "username",
-   "password": "password",
-   "port": "22",
-   "comment": "None"
-  },
-  "creds_3": {
-   "username": "username",
-   "password": "password",
-   "port": "22",
-   "comment": "None"
-  }
- },
- "standAlongSearchDns": {
-  "ips": [
-   "192.168.1"
-  ]
- },
- "crawler": {
-  "-alb": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/albert.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.592461"
-  },
-  "-setup": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/setup.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.593458"
-  },
-  "-alias": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.595456"
-  },
-  "-bak": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/backup.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.596504"
-  },
-  "-remote_command": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/remoteCommand.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.598525"
-  },
-  "-git": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/gitManager.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.599499"
-  },
-  "-lg": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/logger.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.601469"
-  },
-  "-reader": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/reader.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.602392"
-  },
-  "-pipe": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/pipeline.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.604331"
-  },
-  "-wj": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/writer.py",
-   "lastUpdateTime": "2023-01-09 15:31:22.606265"
-  }
- },
- "services": {}
-}
+    "remote_creds": {
+     "creds_1": {
+      "username": "username",
+      "password": "password",
+      "port": "22",
+      "comment": "None"
+     },
+     "creds_2": {
+      "username": "username",
+      "password": "password",
+      "port": "22",
+      "comment": "None"
+     },
+     "creds_3": {
+      "username": "username",
+      "password": "password",
+      "port": "22",
+      "comment": "None"
+     }
+    },
+    "standAlongSearchDns": {
+     "ips": [
+      "192.168.1"
+     ]
+    },
+    "crawler": {},
+    "services": {}
+   }
