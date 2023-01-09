@@ -11,15 +11,15 @@ import datetime
 from logger import logger
 import sys
 from utils import Utils
+# ------- # Try - Import paramiko # ------- #
 Utils().checkLib()
-
+import paramiko
+import socket
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-remote_command'
 # ------- # Outside Variable - visual && usefull variable # ------- #
 startTime = datetime.datetime.now()
-log = logger(enableSave=False)
-# ------- # Try - Import paramiko # ------- #
-# Switz().checkLib()
+log = logger(enableSave=True)
 # ------- # Outside Dynamic Variable - scipt args # ------- #
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
@@ -40,115 +40,108 @@ def configParser():
 class RemoteCommand():
     """
     - Exaplain :
-        - Example this tamplate class
+        - The abaility to send command to linux host / windows host
     """
-    def __init__(self):
-        pass
+    def __init__(
+        self,
+        password:str,
+        username:str,
+        portNumber:str,
+        ):
         # ------- # Default attributes -> basic Variable # ------- #
+        self.password = password
+        self.username = username
+        self.portNumber = portNumber
+        self.machineTypes = ['linux','windows']
         # ------- # Default attributes -> Names # ------- #
         # ------- # Default attributes -> Path # ------- #
-    # ------- # Methods -> sendCommandToNuc # ------- #
-    def send(
+    # ------- # Methods -> sendCommand # ------- #
+    def sendCommand(
         self,
-        hostIpTypeStr:str,
-        commandToSendTypeStr:str,
-        machineTypeWindowsOrLinuxTypeStr:str,
-        getOutputFromSystemTypeBool:bool,
-        showLoggerPrintTypeBool:bool=True,
-        returnLogTypeBool:bool=False,
-        totalTimputTypeInt:int=120
+        hostIp:str,
+        commandToSend:str,
+        machineType:str,
+        getOutputFromSystem:bool=True,
+        showLoggerPrint:bool=True,
+        returnLog:bool=False,
+        totalTimeoutInSec:int=120
         ):
         """
         - Explain : 
             - Send Command to nuc , Seprated function due to diffrent autherntination value from nuc to host
         
         - Flags :
-            - commandToSendTypeStr : 
+            - commandToSend : 
                 - What command wil be send to the nuc ?
-            - getOutputFromSystemTypeBool :
+            - getOutputFromSystem :
                 - True  -> get the output from the command exec
                 - False -> pass
         """
         # init basic var
-        
+        timeout = totalTimeoutInSec   
+        port = self.portNumber
+        username = self.username
+        password = self.password
+        _res = ['...deployCommand']
         try:
-            machineType = machineTypeWindowsOrLinuxTypeStr
-            machineUsernameIdentify = ''
-            host = f'{hostIpTypeStr}'
-
+            machineType = machineType
+            host = f'{hostIp}'
             # check machine type
-            if machineType not in self.machineTypesTypeStr:
-                log.printLog(2,f"Machine type must be one of both -> [{self.machineTypesTypeStr}]")
+            if machineType not in self.machineTypes:
+                log.printLog(2,f"Machine type must be one of both -> [{self.machineTypes}]")
                 exit(0)
             else:
                 # machine type --> linux
-                if machineType == self.machineTypesTypeStr[0]:
-                    #  haifa
-                    # print(hostIpTypeStr)
-                    if '143.185.' in str(hostIpTypeStr) or 'ladh' in str(hostIpTypeStr):
-                        machineUsernameIdentify = self.checkSuperUser( str(hostIpTypeStr),self.readJsonDataFromMappingFile['site_0']['systemPath']['superUser'])
-                        # machineUsernameIdentify = self.readJsonDataFromMappingFile['site_0']['systemPath']['superUser']
-                    # jer
-                    else:
-                        machineUsernameIdentify = self.checkSuperUser( str(hostIpTypeStr),self.readJsonDataFromMappingFile['site_1']['systemPath']['superUser'])
-                        # machineUsernameIdentify = self.readJsonDataFromMappingFile['site_1']['systemPath']['superUser']
-                        # print(machineUsernameIdentify)
+                if machineType == self.machineTypes[0]:
+                    pass
                 # machine type --> windows
-                if machineType == self.machineTypesTypeStr[1]:
-                    machineUsernameIdentify = self.readJsonDataFromMappingFile["site_1"]["authentication"]["username"]
-            timeout = totalTimputTypeInt   
-            port = self.portNumber
-            username = machineUsernameIdentify
-            password = self.passwordTypeStr
+                if machineType == self.machineTypes[1]:
+                    pass
             # print
-            if showLoggerPrintTypeBool:
-                pass
-                log.printLog(0,f'Set hostname to [{host}]')
-                log.printLog(0,f'Set machine type to [{machineType}]')
-                log.printLog(0,f'Set username to [{username}]')
-                # log.printLog(0,f'Set port number to [{port}]')
-                log.printLog(0,f'Set ssh timeout to [{int(int(timeout)*0.0166666667)} min]')
-                log.printLog(0,f'Set command value to [{commandToSendTypeStr}]')
+            if showLoggerPrint:
+                _locals = locals()
+                # pop
+                [ _locals.pop(i) for i in ['self','host','totalTimeoutInSec']]
+                # convert
+                _locals['timeout'] = f'{int(int(timeout)*0.0166666667)} min'
+                _locals['password'] = '*'*len(password)
+
+                Utils().showDataWhenParsing(_locals,45)
             # Make the connection
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh.connect(host, port, username, password)
             # send the command
-            stdin, stdout, stderr = ssh.exec_command(commandToSendTypeStr,timeout=timeout)
+            stdin, stdout, stderr = ssh.exec_command(commandToSend,timeout=timeout)
             catchLogPrint = ['Fetching Data ......']
             # try:
             catchLogPrint = stdout.readlines()
-            # except:
-
-            #     catchLogPrint =  stdout.readlines()
-            #     for line in catchLogPrint:
-            #         print(line.decode("utf8", "ignore"))
-
             # return the print
-            if getOutputFromSystemTypeBool:
+            if getOutputFromSystem:
                 log.printLog(0,'Please wait for output log.')
                 for output in catchLogPrint:
                     output = str(output).replace("\n","")
                     log.printNoFormat(f' - {output}')
                 log.printLog(0,f'Commnad was send to machine type [{machineType}] via host [{host}].')
             # return what data is in the log
-            if returnLogTypeBool:
-                return [i.replace('\n', '') for i in catchLogPrint]
-            if getOutputFromSystemTypeBool:
-                log.printNoFormat(dashLine)
+            if getOutputFromSystem:
+                log.printNoFormat(Utils().dashLine)
+
+            _res =  [i.replace('\n', '') for i in catchLogPrint]
         except (paramiko.ssh_exception.SSHException,socket.timeout):
             pass
         except TimeoutError:
             pass
 
+        return _res
 if __name__ == "__main__":
 
     args = configParser().parse_args()
-    # ------- # Arguments -> -e1 -> example 1 # ------- #
-    if args.example_1:
-        pass
     # ------- # Arguments -> -e2 -> example 2 # ------- #
-    elif args.example_2:
+    if args.example_2:
         pass
+    # ------- # Arguments -> -e1 -> example 1 # ------- #
+    elif args.testing:
+        print(RemoteCommand('PASS','USERNAME','PORTNUMBER').sendCommand("IPADD",'HOSTNAME','LINUX'))
 
 

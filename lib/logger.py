@@ -193,18 +193,13 @@ class logger:
         # return
 
         return f'{currentTime} {separator}{status} {msgTypeStr}'
-
     # ------- # Methods -> printEmpty # ------- #
     def printNoFormat(self, msgTypeStr: str):
         """
         - Explain :
             - print without any color , just collect data for log
         """
-
-        # outputFileContantTypeList.append(msgTypeStr)
         print(msgTypeStr)
-        # self.checkSavingLoggerStatus()
-
     # ------- # Methods -> printColor # ------- #
     def printColor(self, colorToPickTypeInt: int, msgTypeStr: str, showPrint: bool = True, returnOutput: bool = False):
         """
@@ -229,8 +224,6 @@ class logger:
         # blue
         if colorToPickTypeInt in list(range(0, 6)):
             colorToPick = self.optionsLogger[colorToPickTypeInt]['color']
-
-
         showResults = f'{self.makeBold}{colorToPick}{showResults}{self.endOfLine}'
         # print the output
         # self.checkSavingLoggerStatus()

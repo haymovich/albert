@@ -1,29 +1,70 @@
 {
-    "remote_creds": {
-     "creds_1": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-     },
-     "creds_2": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-     },
-     "creds_3": {
-      "username": "username",
-      "password": "password",
-      "port": "22",
-      "comment": "None"
-     }
-    },
-    "standAlongSearchDns": {
-     "ips": [
-      "192.168.1"
-     ]
-    },
-    "crawler": {},
-    "services": {}
-   }
+ "remote_creds": {
+  "creds_1": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
+  },
+  "creds_2": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
+  },
+  "creds_3": {
+   "username": "username",
+   "password": "password",
+   "port": "22",
+   "comment": "None"
+  }
+ },
+ "standAlongSearchDns": {
+  "ips": [
+   "192.168.1"
+  ]
+ },
+ "crawler": {
+  "-alb": {
+   "path": "/Users/barhaymovich/tools/dev/albert/albert.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.880779"
+  },
+  "-setup": {
+   "path": "/Users/barhaymovich/tools/dev/albert/setup.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.886173"
+  },
+  "-alias": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.895216"
+  },
+  "-bak": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/backup.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.899812"
+  },
+  "-remote_command": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/remoteCommand.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.908689"
+  },
+  "-git": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/gitManager.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.913247"
+  },
+  "-lg": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/logger.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.922076"
+  },
+  "-reader": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/reader.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.926629"
+  },
+  "-pipe": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/pipeline.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.935499"
+  },
+  "-wj": {
+   "path": "/Users/barhaymovich/tools/dev/albert/lib/writer.py",
+   "lastUpdateTime": "2023-01-09 22:57:47.944442"
+  }
+ },
+ "services": {}
+}
