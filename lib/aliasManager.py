@@ -180,8 +180,8 @@ class AliasManager():
                             1, f'Succesfully write alias name [{aliasNameToAddTypeStr}] in paths [{pathBashProfile}]')
 
                     # source
-                    print(f'source {eachItem}')
-                    (f'source {eachItem}')
+                    # print(f'source {eachItem}')
+                    # (f'source {eachItem}')
 
                 except FileNotFoundError as e:
                     log.printLog(
@@ -212,3 +212,4 @@ if __name__ == "__main__":
     # ------- # Arguments -> -dac -> deploy_alias_con # ------- #
     elif args.inject_albert:
         AliasManager().injectAlbertAlias()
+        AliasManager().injectNewAlias('calb',f'cd {Reader().extractorFilePathFromAlbertConfigFiles("albert")}')
