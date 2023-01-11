@@ -10,18 +10,12 @@ import os
 import datetime
 from logger import logger
 import sys
+from utils import Utils
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-st' # scriptTemplate will be -st
 # ------- # Outside Variable - visual && usefull variable # ------- #
-# scriptRandomNumber = Switz().randomNumber()
-# getCurrnetHostname = Switz().getHostname()
-# class ArgumentParserError(Exception): pass
-# class ThrowingArgumentParser(argparse.ArgumentParser):
-#     def error(self, message):
-#         raise ArgumentParserError(message)
 startTime = datetime.datetime.now()
 log = logger(enableSave=False)
-
 # ------- # Try - Import paramiko # ------- #
 # Switz().checkLib()
 # ------- # Outside Dynamic Variable - scipt args # ------- #
