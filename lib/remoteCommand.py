@@ -59,7 +59,6 @@ class RemoteCommand():
     def sendCommand(
         self,
         showLoggerPrintTypeBool:bool=True,
-        returnLogTypeBool:bool=False,
         totalTimputTypeInt:int=120,
         getOutputFromSystemTypeBool:bool=True,
         **args,
@@ -77,48 +76,47 @@ class RemoteCommand():
         - Needed Args : 
             hostIpTypeStr:str,
             commandToSendTypeStr:str,
-            machineTypeWindowsOrLinuxTypeStr:str,
+            machineTypeWanted:str,
 
         """
         # init basic var
         timeout = totalTimputTypeInt
         args["port"] = self.portNumber
         args["username"] = "wiliotlab"
-        args["password"] = self.passwordTypeStr
+        args["password"] = self.password
         args['timeout-converted'] = f'{int(int(timeout)*0.0166666667)}'
         _res = ['Fetching.....']
         try:
             # check machine type
-            if args["machineTypeWindowsOrLinuxTypeStr"] not in self.machineTypesTypeStr:
-                log.printLog(2,f"Machine type must be one of both -> [{self.machineTypesTypeStr}]")
+            if args["machineTypeWanted"] not in self.machineTypes:
+                log.printLog(2,f"Machine type must be one of both -> [{self.machineTypes}]")
                 exit(0)
             else:
                 # machine type --> linux
-                if args["machineTypeWindowsOrLinuxTypeStr"] == self.machineTypesTypeStr[0]:
+                if args["machineTypeWanted"] == self.machineTypes[0]:
                     pass
                 # machine type --> windows
-                if args["machineTypeWindowsOrLinuxTypeStr"] == self.machineTypesTypeStr[1]:
+                if args["machineTypeWanted"] == self.machineTypes[1]:
                     pass
             # print
             if showLoggerPrintTypeBool:
-                Utils().showDataWhenParsing(args,40)
-
+                Utils().showDataWhenParsing(args,50)
             # Make the connection
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(args["hostIpTypeStr"], args["port"], args["username"], args["password"])
+            ssh.connect(args["hostIp"], args["port"], args["username"], args["password"])
             # send the command
-            stdin, stdout, stderr = ssh.exec_command(args["commandToSendTypeStr"],timeout=timeout)
+            stdin, stdout, stderr = ssh.exec_command(args["commandToSend"],timeout=timeout)
             catchLogPrint = ['Fetching Data ......']
             # try:
             catchLogPrint = stdout.readlines()
             # return the print
-            if args["commandToSendTypeStr"]:
+            if args["commandToSend"]:
                 log.printLog(0,'Please wait for output log.')
                 for output in catchLogPrint:
                     output = str(output).replace("\n","")
                     log.printNoFormat(f' - {output}')
-                log.printLog(0,f'Commnad was send to machine type [{args["machineTypeWindowsOrLinuxTypeStr"]}] via host [{args["hostIpTypeStr"]}].')
+                log.printLog(0,f'Commnad was send to machine type [{args["machineTypeWanted"]}] via host [{args["hostIp"]}].')
             # return what data is in the log
             _res = [i.replace('\n', '') for i in catchLogPrint]
             if getOutputFromSystemTypeBool:
@@ -134,8 +132,13 @@ if __name__ == "__main__":
     args = configParser().parse_args()
     # ------- # Arguments -> -e1 -> example 1 # ------- #
     if args.testing:
-        RemoteCommand("Qwert-2023$",'22').sendCommand(hostIpTypeStr='192.168.48.49',commandToSendTypeStr='ls -al',machineTypeWindowsOrLinuxTypeStr='linux')
-        print(RemoteCommand('PASS','USERNAME','PORTNUMBER').sendCommand("IPADD",'HOSTNAME','LINUX'))
+        RemoteCommand(
+            password="Qwerty-2023$",
+            username='wiliotlab',
+            portNumber='22').sendCommand(
+                hostIp='192.168.48.49',
+                commandToSend='ls -al',
+                machineTypeWanted='linux')
     # ------- # Arguments -> -e2 -> example 2 # ------- #
     if args.example_2:
         pass
