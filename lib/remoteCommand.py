@@ -11,6 +11,7 @@ import datetime
 from logger import logger
 import sys
 from utils import Utils
+# ------- # Try - Import paramiko # ------- #
 Utils().checkLib()
 import paramiko
 import socket
@@ -18,9 +19,7 @@ import socket
 scriptNickname = '-remote_command'
 # ------- # Outside Variable - visual && usefull variable # ------- #
 startTime = datetime.datetime.now()
-log = logger(enableSave=False)
-# ------- # Try - Import paramiko # ------- #
-# Switz().checkLib()
+log = logger(enableSave=True)
 # ------- # Outside Dynamic Variable - scipt args # ------- #
 scriptName = os.path.basename(__file__)
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
@@ -45,13 +44,15 @@ class RemoteCommand():
     """
     def __init__(
         self,
-        passwordTypeStr:str,
-        portNumberTypeStr:str,
+        password:str,
+        username:str,
+        portNumber:str,
         ):
         # ------- # Default attributes -> basic Variable # ------- #
-        self.passwordTypeStr = passwordTypeStr
-        self.portNumber = portNumberTypeStr
-        self.machineTypesTypeStr = ['linux','windows']
+        self.password = password
+        self.username = username
+        self.portNumber = portNumber
+        self.machineTypes = ['linux','windows']
         # ------- # Default attributes -> Names # ------- #
         # ------- # Default attributes -> Path # ------- #
     # ------- # Methods -> sendCommand # ------- #
@@ -68,9 +69,9 @@ class RemoteCommand():
             - Send Command to nuc , Seprated function due to diffrent autherntination value from nuc to host
         
         - Flags :
-            - commandToSendTypeStr : 
+            - commandToSend : 
                 - What command wil be send to the nuc ?
-            - getOutputFromSystemTypeBool :
+            - getOutputFromSystem :
                 - True  -> get the output from the command exec
                 - False -> pass
         - Needed Args : 
@@ -85,6 +86,7 @@ class RemoteCommand():
         args["username"] = "wiliotlab"
         args["password"] = self.passwordTypeStr
         args['timeout-converted'] = f'{int(int(timeout)*0.0166666667)}'
+        _res = ['Fetching.....']
         try:
             # check machine type
             if args["machineTypeWindowsOrLinuxTypeStr"] not in self.machineTypesTypeStr:
@@ -118,8 +120,7 @@ class RemoteCommand():
                     log.printNoFormat(f' - {output}')
                 log.printLog(0,f'Commnad was send to machine type [{args["machineTypeWindowsOrLinuxTypeStr"]}] via host [{args["hostIpTypeStr"]}].')
             # return what data is in the log
-            if returnLogTypeBool:
-                return [i.replace('\n', '') for i in catchLogPrint]
+            _res = [i.replace('\n', '') for i in catchLogPrint]
             if getOutputFromSystemTypeBool:
                 log.printNoFormat(Utils().dashLine)
         except (paramiko.ssh_exception.SSHException,socket.timeout):
@@ -127,14 +128,18 @@ class RemoteCommand():
         except TimeoutError:
             pass
 
+        return _res
 if __name__ == "__main__":
 
     args = configParser().parse_args()
     # ------- # Arguments -> -e1 -> example 1 # ------- #
     if args.testing:
         RemoteCommand("Qwert-2023$",'22').sendCommand(hostIpTypeStr='192.168.48.49',commandToSendTypeStr='ls -al',machineTypeWindowsOrLinuxTypeStr='linux')
+        print(RemoteCommand('PASS','USERNAME','PORTNUMBER').sendCommand("IPADD",'HOSTNAME','LINUX'))
     # ------- # Arguments -> -e2 -> example 2 # ------- #
-    elif args.example_2:
+    if args.example_2:
         pass
+
+
 
 

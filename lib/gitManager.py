@@ -191,7 +191,7 @@ if __name__ == '__main__':
     args = configParser().parse_args()
     # check if git inside the current folder
     _folderToSearchTheGitFolder = args.go_to_folder
-    if [i for i in ['albert_src','alb_src'] if i == _folderToSearchTheGitFolder]:
+    if [i for i in ['albert_src','alb_src','alb'] if i == _folderToSearchTheGitFolder]:
         _folderToSearchTheGitFolder = Reader().extractorFilePathFromAlbertConfigFiles('albert')
     os.chdir(_folderToSearchTheGitFolder)
     log.printLog(0,

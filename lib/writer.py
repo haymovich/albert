@@ -63,3 +63,4 @@ class Writer():
                 writeTextFile.write(str(_eachRow).strip()+'\n')
 
     
+
