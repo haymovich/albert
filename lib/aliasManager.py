@@ -205,7 +205,7 @@ if __name__ == "__main__":
         if args.inject:
             log.printLog(
                 0, f'Start to inject alias [{_aliasBuilder}] to bash.')
-            AliasManager().injectNewAlias(argsWrapper[0], argsWrapper[1])
+            AliasManager().injectNewAlias(argsWrapper[0], argsWrapper[1])   
         else:
             print(AliasManager().aliasSyntaxBuilder(
                 argsWrapper[0], argsWrapper[1]))

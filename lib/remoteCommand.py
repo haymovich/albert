@@ -12,7 +12,8 @@ from logger import logger
 import sys
 from utils import Utils
 Utils().checkLib()
-
+import paramiko
+import socket
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-remote_command'
 # ------- # Outside Variable - visual && usefull variable # ------- #
@@ -40,23 +41,27 @@ def configParser():
 class RemoteCommand():
     """
     - Exaplain :
-        - Example this tamplate class
+        - The abaility to send command to linux host / windows host
     """
-    def __init__(self):
-        pass
+    def __init__(
+        self,
+        passwordTypeStr:str,
+        portNumberTypeStr:str,
+        ):
         # ------- # Default attributes -> basic Variable # ------- #
+        self.passwordTypeStr = passwordTypeStr
+        self.portNumber = portNumberTypeStr
+        self.machineTypesTypeStr = ['linux','windows']
         # ------- # Default attributes -> Names # ------- #
         # ------- # Default attributes -> Path # ------- #
-    # ------- # Methods -> sendCommandToNuc # ------- #
-    def send(
+    # ------- # Methods -> sendCommand # ------- #
+    def sendCommand(
         self,
-        hostIpTypeStr:str,
-        commandToSendTypeStr:str,
-        machineTypeWindowsOrLinuxTypeStr:str,
-        getOutputFromSystemTypeBool:bool,
         showLoggerPrintTypeBool:bool=True,
         returnLogTypeBool:bool=False,
-        totalTimputTypeInt:int=120
+        totalTimputTypeInt:int=120,
+        getOutputFromSystemTypeBool:bool=True,
+        **args,
         ):
         """
         - Explain : 
@@ -68,74 +73,55 @@ class RemoteCommand():
             - getOutputFromSystemTypeBool :
                 - True  -> get the output from the command exec
                 - False -> pass
+        - Needed Args : 
+            hostIpTypeStr:str,
+            commandToSendTypeStr:str,
+            machineTypeWindowsOrLinuxTypeStr:str,
+
         """
         # init basic var
-        
+        timeout = totalTimputTypeInt
+        args["port"] = self.portNumber
+        args["username"] = "wiliotlab"
+        args["password"] = self.passwordTypeStr
+        args['timeout-converted'] = f'{int(int(timeout)*0.0166666667)}'
         try:
-            machineType = machineTypeWindowsOrLinuxTypeStr
-            machineUsernameIdentify = ''
-            host = f'{hostIpTypeStr}'
-
             # check machine type
-            if machineType not in self.machineTypesTypeStr:
+            if args["machineTypeWindowsOrLinuxTypeStr"] not in self.machineTypesTypeStr:
                 log.printLog(2,f"Machine type must be one of both -> [{self.machineTypesTypeStr}]")
                 exit(0)
             else:
                 # machine type --> linux
-                if machineType == self.machineTypesTypeStr[0]:
-                    #  haifa
-                    # print(hostIpTypeStr)
-                    if '143.185.' in str(hostIpTypeStr) or 'ladh' in str(hostIpTypeStr):
-                        machineUsernameIdentify = self.checkSuperUser( str(hostIpTypeStr),self.readJsonDataFromMappingFile['site_0']['systemPath']['superUser'])
-                        # machineUsernameIdentify = self.readJsonDataFromMappingFile['site_0']['systemPath']['superUser']
-                    # jer
-                    else:
-                        machineUsernameIdentify = self.checkSuperUser( str(hostIpTypeStr),self.readJsonDataFromMappingFile['site_1']['systemPath']['superUser'])
-                        # machineUsernameIdentify = self.readJsonDataFromMappingFile['site_1']['systemPath']['superUser']
-                        # print(machineUsernameIdentify)
+                if args["machineTypeWindowsOrLinuxTypeStr"] == self.machineTypesTypeStr[0]:
+                    pass
                 # machine type --> windows
-                if machineType == self.machineTypesTypeStr[1]:
-                    machineUsernameIdentify = self.readJsonDataFromMappingFile["site_1"]["authentication"]["username"]
-            timeout = totalTimputTypeInt   
-            port = self.portNumber
-            username = machineUsernameIdentify
-            password = self.passwordTypeStr
+                if args["machineTypeWindowsOrLinuxTypeStr"] == self.machineTypesTypeStr[1]:
+                    pass
             # print
             if showLoggerPrintTypeBool:
-                pass
-                log.printLog(0,f'Set hostname to [{host}]')
-                log.printLog(0,f'Set machine type to [{machineType}]')
-                log.printLog(0,f'Set username to [{username}]')
-                # log.printLog(0,f'Set port number to [{port}]')
-                log.printLog(0,f'Set ssh timeout to [{int(int(timeout)*0.0166666667)} min]')
-                log.printLog(0,f'Set command value to [{commandToSendTypeStr}]')
+                Utils().showDataWhenParsing(args,40)
+
             # Make the connection
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(host, port, username, password)
+            ssh.connect(args["hostIpTypeStr"], args["port"], args["username"], args["password"])
             # send the command
-            stdin, stdout, stderr = ssh.exec_command(commandToSendTypeStr,timeout=timeout)
+            stdin, stdout, stderr = ssh.exec_command(args["commandToSendTypeStr"],timeout=timeout)
             catchLogPrint = ['Fetching Data ......']
             # try:
             catchLogPrint = stdout.readlines()
-            # except:
-
-            #     catchLogPrint =  stdout.readlines()
-            #     for line in catchLogPrint:
-            #         print(line.decode("utf8", "ignore"))
-
             # return the print
-            if getOutputFromSystemTypeBool:
+            if args["commandToSendTypeStr"]:
                 log.printLog(0,'Please wait for output log.')
                 for output in catchLogPrint:
                     output = str(output).replace("\n","")
                     log.printNoFormat(f' - {output}')
-                log.printLog(0,f'Commnad was send to machine type [{machineType}] via host [{host}].')
+                log.printLog(0,f'Commnad was send to machine type [{args["machineTypeWindowsOrLinuxTypeStr"]}] via host [{args["hostIpTypeStr"]}].')
             # return what data is in the log
             if returnLogTypeBool:
                 return [i.replace('\n', '') for i in catchLogPrint]
             if getOutputFromSystemTypeBool:
-                log.printNoFormat(dashLine)
+                log.printNoFormat(Utils().dashLine)
         except (paramiko.ssh_exception.SSHException,socket.timeout):
             pass
         except TimeoutError:
@@ -145,8 +131,8 @@ if __name__ == "__main__":
 
     args = configParser().parse_args()
     # ------- # Arguments -> -e1 -> example 1 # ------- #
-    if args.example_1:
-        pass
+    if args.testing:
+        RemoteCommand("Qwert-2023$",'22').sendCommand(hostIpTypeStr='192.168.48.49',commandToSendTypeStr='ls -al',machineTypeWindowsOrLinuxTypeStr='linux')
     # ------- # Arguments -> -e2 -> example 2 # ------- #
     elif args.example_2:
         pass
