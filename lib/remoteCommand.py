@@ -133,11 +133,11 @@ if __name__ == "__main__":
     # ------- # Arguments -> -e1 -> example 1 # ------- #
     if args.testing:
         RemoteCommand(
-            password="Qwerty-2023$",
-            username='wiliotlab',
+            password="Password",
+            username='Username',
             portNumber='22').sendCommand(
-                hostIp='192.168.48.49',
-                commandToSend='ls -al',
+                hostIp='Ip',
+                commandToSend='hostname',
                 machineTypeWanted='linux')
     # ------- # Arguments -> -e2 -> example 2 # ------- #
     if args.example_2:

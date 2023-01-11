@@ -6,7 +6,6 @@ import sys
 pathScriptFolder = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(1, os.path.join(pathScriptFolder, 'lib'))
 from logger import logger
-from reader import Reader
 from crawler import Crawler
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-alb'

@@ -74,6 +74,7 @@ class Reader():
 
         # ------- # Default attributes -> basic Variable # ------- #
         # ------- # Default attributes -> Names # ------- #
+        self.nameStoreHostsJsonFileName = 'networkScanHosts.json'
         # ------- # Default attributes -> Path # ------- #
         self.pathAlbertHomeDir = os.path.dirname(pathScriptFolder)
         self.blackListDirsForMapper = [
@@ -82,7 +83,7 @@ class Reader():
         self.pathAlbertConfigFiles = self.pathProjectParser['config/albert_tmp.json']
         if 'config/albert.json' in self.pathProjectParser.keys():
             self.pathAlbertConfigFiles = self.pathProjectParser['config/albert.json']
-
+        self.pathStoreHostsJsonFileName = os.path.join(self.extractorFilePathFromAlbertConfigFiles('config'),self.nameStoreHostsJsonFileName)
     # ------- # Methods -> readAlbertConfigFiles # ------- #
     def readAlbertConfigFiles(self):
         """Read any json file"""
@@ -115,7 +116,18 @@ class Reader():
                 return readAnyTxtFile.read().splitlines()
         except:
             pass
-            # print('error')
+            
+    # ------- # Methods -> readHostScannedPool # ------- #
+    def readHostScannedPool(self):
+        return self.readAnyJsonFile(self.pathStoreHostsJsonFileName)
+        
+    # ------- # Methods -> readAnyJsonFile # ------- #
+    def readAnyJsonFile(self,filePathForJson:str):
+        try:
+            return self.jsonReader(filePathForJson)
+        except:
+            pass
+
     # ------- # Methods -> filePathExtractorFromAlbertConfigFiles # ------- #
     def extractorFilePathFromAlbertConfigFiles(self, keyToExtract: str):
         """

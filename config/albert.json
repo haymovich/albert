@@ -27,43 +27,47 @@
  "crawler": {
   "-alb": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/albert.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.028930"
+   "lastUpdateTime": "2023-01-11 12:33:32.453810"
   },
   "-setup": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/setup.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.031550"
+   "lastUpdateTime": "2023-01-11 12:33:32.456786"
   },
   "-alias": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.036895"
+   "lastUpdateTime": "2023-01-11 12:33:32.462715"
   },
   "-bak": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/backup.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.039623"
+   "lastUpdateTime": "2023-01-11 12:33:32.465668"
   },
   "-remote_command": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/remoteCommand.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.045238"
+   "lastUpdateTime": "2023-01-11 12:33:32.471530"
   },
   "-lg": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/logger.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.056140"
+   "lastUpdateTime": "2023-01-11 12:33:32.483262"
   },
   "-reader": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/reader.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.058718"
+   "lastUpdateTime": "2023-01-11 12:33:32.486161"
   },
   "-pipe": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/pipeline.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.064346"
+   "lastUpdateTime": "2023-01-11 12:33:32.491753"
   },
   "-wj": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/writer.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.069481"
+   "lastUpdateTime": "2023-01-11 12:33:32.497606"
   },
   "-git": {
    "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/gitManager.py",
-   "lastUpdateTime": "2023-01-11 12:04:41.050440"
+   "lastUpdateTime": "2023-01-11 12:33:32.477364"
+  },
+  "-netscan": {
+   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/networkScanner.py",
+   "lastUpdateTime": "2023-01-11 12:33:32.474445"
   }
  },
  "services": {}

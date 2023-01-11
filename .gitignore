@@ -131,3 +131,5 @@ dmypy.json
 
 # albert
 albert.json*
+networkScanHosts.json
+creds.json

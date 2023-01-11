@@ -9,7 +9,7 @@ import json
 import os
 import datetime
 from logger import logger
-from reader import Reader
+
 
 # ------- # Outside Variable  - albert searcher # ------- #
 scriptNickname = '-wj'
@@ -44,8 +44,9 @@ class Writer():
         pass
         # ------- # Default attributes -> basic Variable # ------- #
         # ------- # Default attributes -> Names # ------- #
+        self.nameStoreHostsJsonFileName = 'networkScanHosts.json'
         # ------- # Default attributes -> Path # ------- #
-
+        
     # ------- # Methods -> writeAnyJsonFile # ------- #
     def writeAnyJsonFile(self,jsonFileLocationTypeStr:str,dataToWriteTypeDict:dict):
         with open(jsonFileLocationTypeStr,'w') as writeJsonFile:

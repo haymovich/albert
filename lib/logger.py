@@ -29,6 +29,7 @@ scriptName = sys.argv[0].replace(
     './', '').strip().replace('.py', '')
 outsideScriptName = str(__main__.__file__).split(
     '/')[::-1][0].strip().split('.')[0].strip().replace('_', '').strip()
+
 nameFileForLogFile = datetime.datetime.now().strftime(
     f"{Reader().extractorFilePathFromAlbertConfigFiles('log')}FileName_{outsideScriptName}_Date_%d-%m-%Y_Time_%H-%M-%S-%f.log")
 
