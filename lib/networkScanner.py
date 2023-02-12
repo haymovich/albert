@@ -254,6 +254,9 @@ class NetworkScanner():
         # format the netwrok
         _mappedNewNetworkFromUserFormatIp = ['{}.{}'.format(_getIpFormatFromUser, i) for i in range(1, 255)]
         _blackList = ['192.168.48.1']
+        """
+        192.168.1.1
+        """
         try:
             for i in _blackList:
                 log.printLog(7,f'remove black list ip [{i}]','remove-blacklist-ip',3)

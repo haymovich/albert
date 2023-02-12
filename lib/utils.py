@@ -195,11 +195,14 @@ class Utils():
         return random.randrange(1, 999999)
 
     # ------- # Methods - changeTerminalName # ------- #
-    def showDataWhenParsing(self, data: dict, spacesToAdd: int = 25):
+    def showDataWhenParsing(self, data: dict, spacesToAdd: int = 25,addIndent:int=False):
         for k, v in data.items():
             _findSpace = spacesToAdd - len(f'Arguemnt [{k}]')
+            _indent = ''
+            if addIndent and type(addIndent) == int:
+                _indent = addIndent*'\t'
             log.printLog(
-                7, f'Arguemnt [{k}] {" "*_findSpace} is set to [{v}]', 'Parsing Argement Data', 4)
+                7, f'{_indent} Arguemnt [{k}] {" "*_findSpace} is set to [{v}]', 'Parsing Argement Data', 4)
 
     # ------- # Methods - changeTerminalName # ------- #
     def extractAllUsernamesInCurrentMachine(self):

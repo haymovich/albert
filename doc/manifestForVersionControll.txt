@@ -1,12 +1,19 @@
+----------
+Branch tamplate #1
 n = new
 ft = feature
 fi = fix
 b = bug
 g = generic
 ----------
-nft-<AnyThing> = newfeature-<AnyThing>
-nfix-<AnyThing> = newfix-<AnyThing>
-nb-<AnyThing> = newbug-<AnyThing>
-fib-<AnyThing> = fixbug-<AnyThing>
-g-<AnyThing> = generic-<AnyThing>
+Branch tamplate #2
+nft/<AnyThing> = newfeature/<AnyThing>
+nfi/<AnyThing> = newfix/<AnyThing>
+nb/<AnyThing> = newbug/<AnyThing>
+fib/<AnyThing> = fixbug/<AnyThing>
+g/<AnyThing> = generic/<AnyThing>
 ---------
+Real Example
+nft/addNewTest
+bft/addNewTest
+fift/addNewTest
