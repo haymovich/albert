@@ -26,48 +26,48 @@
  },
  "crawler": {
   "-alb": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/albert.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.453810"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/albert.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.184184"
   },
   "-setup": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/setup.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.456786"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/setup.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.188035"
   },
   "-alias": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/aliasManager.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.462715"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/aliasManager.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.195353"
   },
   "-bak": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/backup.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.465668"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/backup.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.198998"
   },
   "-remote_command": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/remoteCommand.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.471530"
-  },
-  "-lg": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/logger.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.483262"
-  },
-  "-reader": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/reader.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.486161"
-  },
-  "-pipe": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/pipeline.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.491753"
-  },
-  "-wj": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/writer.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.497606"
-  },
-  "-git": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/gitManager.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.477364"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/remoteCommand.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.205945"
   },
   "-netscan": {
-   "path": "/Users/bar.haymovich/wiliotSysReg/albert/lib/networkScanner.py",
-   "lastUpdateTime": "2023-01-11 12:33:32.474445"
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/networkScanner.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.209428"
+  },
+  "-git": {
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/gitManager.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.212880"
+  },
+  "-lg": {
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/logger.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.219932"
+  },
+  "-reader": {
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/reader.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.223391"
+  },
+  "-pipe": {
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/pipeline.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.230149"
+  },
+  "-wj": {
+   "path": "/Users/bar.haymovich/Downloads/wiliotSysReg/albert/lib/writer.py",
+   "lastUpdateTime": "2023-05-17 12:51:47.236934"
   }
  },
  "services": {}
